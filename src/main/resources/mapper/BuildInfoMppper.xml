@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tbxx.wpct.mapper.BuildInfoMapper">
+
+    <insert id="insertBuildInfos" >
+        insert into tb_build_info (house_type, village_name, build_no, room_no,openid,relation)
+        values
+        <foreach collection="buildInfoList" item="item" index="index" separator=",">
+            (#{item.houseType}, #{item.villageName}, #{item.buildNo},#{item.roomNo},#{item.openid},#{item.relation})
+        </foreach>
+    </insert>
+
+</mapper>

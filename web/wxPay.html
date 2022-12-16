@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+</head>
+
+<body>
+  <button id="pay">点我拉起支付</button>
+</body>
+
+<script>
+  var data = {}
+  var payData = {}
+  axios.post('https://4s3471264h.zicp.fun/weixin/jsapi/sdk')
+    .then(function (response) {
+      console.log('config请求成功')
+      data = JSON.parse(response.data.data)
+      wx.config({
+        debug: true, // 开启调试模式,调用的所有 api 的返回值会在客户端 alert 出来，若要查看传入的参数，可以在 pc 端打开，参数信息会通过 log 打出，仅在 pc 端时才会打印。
+        appId: data.appId, // 必填，公众号的唯一标识
+        timestamp: data.timestamp, // 必填，生成签名的时间戳
+        nonceStr: data.nonceStr, // 必填，生成签名的随机串
+        signature: data.signature, // 必填，签名
+        jsApiList: ['chooseWXPay'] // 必填，需要使用的 JS 接口列表
+      })
+      wx.ready(function () {
+        console.log('config设置成功')
+      });
+      wx.error(function (res) {
+        console.log('config设置失败')
+      });
+    })
+    .catch(function (error) {
+      console.log('config请求失败')
+    });
+
+  document.getElementById('pay').addEventListener('click', function () {
+    // 发送 POST 请求
+    axios({
+      method: 'post',
+      url: 'https://4s3471264h.zicp.fun/weixin/jsapi/pay',
+    }).then(function (response) {
+      console.log('发送成功')
+      payData = JSON.parse(response.data.data)
+      console.log(payData)
+      wx.chooseWXPay({
+        timestamp: payData.timeStamp, // 支付签名时间戳，注意微信 jssdk 中的所有使用 timestamp 字段均为小写。但最新版的支付后台生成签名使用的 timeStamp 字段名需大写其中的 S 字符
+        nonceStr: payData.nonceStr, // 支付签名随机串，不长于 32 位
+        package: "prepay_id=" + payData.prepay_id, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
+        signType: payData.signType, // 微信支付V3的传入 RSA ,微信支付V2的传入格式与V2统一下单的签名格式保持一致
+        paySign: payData.paySign, // 支付签名
+        success: function (res) {
+            console.log('支付成功')
+        }
+      });
+    });
+  })
+
+  console.log(data)
+
+</script>
+
+</html>

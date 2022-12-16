@@ -1,0 +1,47 @@
+package com.tbxx.wpct.entity;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+/**
+ * @Author ZXX
+ * @ClassName PooledFee
+ * @Description TODO
+ * @DATE 2022/10/10 19:29
+ */
+
+@Data
+@TableName("tb_pooled_fee")
+public class PooledFee implements Serializable {
+    /**
+     * 主键
+     */
+    @TableId(type = IdType.AUTO)
+    private int id;
+    /**
+     * 小区号
+     */
+    private String villageName;
+    /**
+     * 公电梯费
+     */
+    private Integer liftFee;
+    /**
+     * 公水费
+     */
+    private Integer waterFee;
+    /**
+     * 公电费
+     */
+    private Integer electricityFee;
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+
+}

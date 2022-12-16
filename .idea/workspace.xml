@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="81e9da3f-8dd7-42c9-b16f-150d9be9c6ca" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/config/WxPayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/config/WxPayConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/CheckController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/CheckController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/DepositController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/DepositController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/ExamineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/ExamineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/PooledFeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/PooledFeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/SysRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/SysRoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/SysUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/SysUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/WechatUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/WechatUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/mapper/DepositMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/mapper/DepositMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/mapper/OrderInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/mapper/OrderInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/service/impl/BuildInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/service/impl/BuildInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/shiro/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/shiro/ShiroConfig.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2IubCdHMFJfcm8CQKotqn5NWbzV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\武平城投新\wpct_v2\backend" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WpctApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.tbxx.wpct.WpctApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SshConsoleOptionsProvider">
+    <option name="myEncoding" value="UTF-8" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="81e9da3f-8dd7-42c9-b16f-150d9be9c6ca" name="Default Changelist" comment="" />
+      <created>1671034291126</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1671034291126</updated>
+      <workItem from="1671034292704" duration="2833000" />
+      <workItem from="1671065144404" duration="207000" />
+      <workItem from="1671065403411" duration="12720000" />
+      <workItem from="1671082873407" duration="4368000" />
+      <workItem from="1671112741633" duration="2806000" />
+      <workItem from="1671116926828" duration="2635000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

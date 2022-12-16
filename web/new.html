@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="http://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+</head>
+
+<body>
+  <button id="pay">点我拉起支付</button>
+  <p id="openid"></p>
+  <script>
+    var data = {}
+    var payData = {}
+    //paramobj是用来放属性和参数的
+    var paramobj = {};
+    var openID = ''
+    window.onload = function () {
+      //此时parameterURL为:name=张三&age=25
+      var parameterURL = location.search.substring(1, location.search.length);
+      //此时paramArr为一个数组:["name=张三","age=25"]
+      var paramArr = parameterURL.split("&");
+      var key, value, temp;
+      //定义2个变量接收key，value并存到paramobj中
+      for (i = 0; i < paramArr.length; i++) {
+        temp = paramArr[i].split("=");
+        if (temp.length === 1) {
+          paramobj[temp[0]] = "";
+        }
+        else if (temp.length > 1) {
+          for (j = 0; j < temp.length; j++) {
+            paramobj[temp[0]] = decodeURIComponent(temp[1]);
+          }
+        }
+      }
+      //此时参数已全部保存至paramobj中,这里显示到div
+      var showStr = "";
+      for (var a in paramobj) {
+        showStr += (a + ":" + paramobj[a]);
+      }
+      document.getElementById('openid').innerHTML = paramobj.openid
+    }
+
+
+    axios.post('https://4s3471264h.zicp.fun/weixin/jsapi/sdk')
+      .then(function (response) {
+        console.log('config请求成功')
+        data = JSON.parse(response.data.data)
+        wx.config({
+          debug: true, // 开启调试模式,调用的所有 api 的返回值会在客户端 alert 出来，若要查看传入的参数，可以在 pc 端打开，参数信息会通过 log 打出，仅在 pc 端时才会打印。
+          appId: data.appId, // 必填，公众号的唯一标识
+          timestamp: data.timestamp, // 必填，生成签名的时间戳
+          nonceStr: data.nonceStr, // 必填，生成签名的随机串
+          signature: data.signature, // 必填，签名
+          jsApiList: ['chooseWXPay'] // 必填，需要使用的 JS 接口列表
+        })
+        wx.ready(function () {
+          console.log('config设置成功')
+        });
+        wx.error(function (res) {
+          console.log('config设置失败')
+        });
+      })
+      .catch(function (error) {
+        console.log('config请求失败')
+      });
+
+    // var oppenId = document.getElementById('oppenid').innerText
+    // console.log(oppenId)
+
+
+    document.getElementById('pay').addEventListener('click', function () {
+      // 发送 POST 请求
+      openID=document.getElementById('openid').innerHTML
+      console.log(openID)
+      axios({
+        method: 'post',
+        url: 'https://4s3471264h.zicp.fun/weixin/jsapi/pay?openID='+openID
+      }).then(function (response) {
+        console.log('发送成功')
+        payData = JSON.parse(response.data.data)
+        console.log(payData)
+        wx.chooseWXPay({
+          timestamp: 0, // 支付签名时间戳，注意微信 jssdk 中的所有使用 timestamp 字段均为小写。但最新版的支付后台生成签名使用的 timeStamp 字段名需大写其中的 S 字符
+          nonceStr: payData.nonceStr, // 支付签名随机串，不长于 32 位
+          package: "prepay_id=" + payData.prepay_id, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
+          signType: payData.signType, // 微信支付V3的传入 RSA ,微信支付V2的传入格式与V2统一下单的签名格式保持一致
+          paySign: payData.paySign, // 支付签名
+          success: function (res) {
+            console.log('支付成功')
+          }
+        });
+      });
+    })
+
+
+    wx.checkJsApi({
+      jsApiList: ['chooseImage'], // 需要检测的 JS 接口列表，所有 JS 接口列表见附录2,
+      success: function (res) {
+        // 以键值对的形式返回，可用的 api 值true，不可用为false
+        // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+        console.log('chooseImage接口可以用')
+      }
+    });
+
+  </script>
+</body>
+
+
+</html>
