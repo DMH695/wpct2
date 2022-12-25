@@ -1,5 +1,6 @@
 package com.tbxx.wpct.entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -27,22 +28,27 @@ public class BuildInfo implements Serializable {
     /**
      * 房屋类型
      */
+    @ExcelProperty("房屋类型")
     private String houseType;
     /**
      * 小区名
      */
+    @ExcelProperty("小区名")
     private String villageName;
     /**
      * 楼号
      */
+    @ExcelProperty("楼号")
     private String buildNo;
     /**
      * 房号
      */
+    @ExcelProperty("房号")
     private String roomNo;
     /**
      * openId
      */
+    @ExcelProperty("")
     private String openid;
     /**
      * 与房屋的关系

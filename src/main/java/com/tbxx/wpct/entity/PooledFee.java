@@ -1,5 +1,7 @@
 package com.tbxx.wpct.entity;
 
+import com.alibaba.excel.annotation.ExcelIgnore;
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -26,22 +28,27 @@ public class PooledFee implements Serializable {
     /**
      * 小区号
      */
+    @ExcelProperty("小区号")
     private String villageName;
     /**
      * 公电梯费
      */
+    @ExcelProperty("公电梯费")
     private Integer liftFee;
     /**
      * 公水费
      */
+    @ExcelProperty("公水费")
     private Integer waterFee;
     /**
      * 公电费
      */
+    @ExcelProperty("公电费")
     private Integer electricityFee;
     /**
      * 创建时间
      */
+    @ExcelProperty("创建时间")
     private LocalDateTime createTime;
 
 }

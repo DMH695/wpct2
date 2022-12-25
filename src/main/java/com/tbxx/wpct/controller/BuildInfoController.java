@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @Author ZXX
  * @ClassName BuildInfoController
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * @DATE 2022/10/8 19:42
  */
 
-@CrossOrigin 
+@CrossOrigin
 @Api(tags = "房屋信息")
 @Slf4j
 @RestController
@@ -52,6 +54,12 @@ public class BuildInfoController {
     @GetMapping("/remove")
     public Result removeBindBuild(@RequestParam int id) {
         return buildInfoService.removeBuild(id);
+    }
+
+    @ApiOperation("获取房屋信息模板")
+    @GetMapping("/get/template")
+    public void getTemplate(HttpServletResponse response){
+
     }
 
 

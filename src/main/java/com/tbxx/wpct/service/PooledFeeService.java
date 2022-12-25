@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.entity.PooledFee;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @Author ZXX
@@ -27,4 +30,12 @@ public interface PooledFeeService extends IService<PooledFee> {
 
     @Transactional
     Result singlepooled(String villageName ,String control);
+
+    @Transactional
+    void getTemplate(HttpServletResponse response);
+
+    @Transactional
+    Result importPooled(MultipartFile file);
+
+
 }

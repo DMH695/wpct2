@@ -1,14 +1,21 @@
 package com.tbxx.wpct.controller;
 
+import com.alibaba.excel.EasyExcel;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.entity.Examine;
 import com.tbxx.wpct.entity.PooledFee;
 import com.tbxx.wpct.service.impl.PooledFeeServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.SneakyThrows;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author ZXX
@@ -17,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
  * @DATE 2022/10/10 19:19
  */
 
-@CrossOrigin 
+@CrossOrigin
 @Api(tags = "公摊费模块")
 @RestController
 @RequestMapping("/pooled")
@@ -60,6 +67,22 @@ public class PooledFeeController {
     @PostMapping("/cost")
     public Result singlepooled(@RequestParam String villageName ,@RequestParam String control){
         return pooledFeeService.singlepooled(villageName,control);
+    }
+
+    @SneakyThrows
+    @ApiOperation("获取公摊费模板")
+    @GetMapping("/get/template")
+    public void getTemplate(HttpServletResponse response){
+        pooledFeeService.getTemplate(response);
+    }
+
+    @ApiOperation("导入公摊费")
+    @PostMapping("/import")
+    public Result importPooled(@RequestParam MultipartFile file){
+        if (file.isEmpty()){
+            Result.fail("empty file");
+        }
+        return pooledFeeService.importPooled(file);
     }
 
 
