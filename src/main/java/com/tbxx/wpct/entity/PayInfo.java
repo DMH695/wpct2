@@ -82,9 +82,9 @@ public class PayInfo implements Serializable {
     private String payStatus;
 
     /**
-     * 保障类型
+     * 房屋类型
      */
-    private String guaranteeType;
+    private String houseType;
 
     /**
      * 缴费开始时间

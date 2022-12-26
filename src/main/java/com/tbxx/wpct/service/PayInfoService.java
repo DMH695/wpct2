@@ -1,7 +1,10 @@
 package com.tbxx.wpct.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.entity.PayInfo;
+
+import java.util.List;
 
 /**
  * @Author ZXX
@@ -11,4 +14,5 @@ import com.tbxx.wpct.entity.PayInfo;
  */
 
 public interface PayInfoService extends IService<PayInfo> {
+    List<PayInfo> selectCondition(PayInfoVo vo);
 }
