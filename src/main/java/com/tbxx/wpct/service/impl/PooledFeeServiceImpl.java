@@ -44,8 +44,6 @@ public class PooledFeeServiceImpl extends ServiceImpl<PooledFeeMapper, PooledFee
     @Resource
     private PooledFeeMapper pooledFeeMapper;
 
-    @Autowired
-    SqlSessionFactory sqlSessionFactory;
 
 
     /**
@@ -185,11 +183,9 @@ public class PooledFeeServiceImpl extends ServiceImpl<PooledFeeMapper, PooledFee
     @Override
     public Result importPooled(MultipartFile file) {
         List<PooledFee> pooledFees = EasyExcel.read(file.getInputStream()).head(PooledFee.class).sheet().doReadSync();
-        SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH);
         for (PooledFee pooledFee : pooledFees){
             pooledFeeMapper.insert(pooledFee);
         }
-        session.commit();
         return Result.ok();
     }
 }

@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 @Api(tags = "房屋信息")
 @Slf4j
 @RestController
-@RequestMapping("/build")
+@RequestMapping("/build/info")
 public class BuildInfoController {
 
 
