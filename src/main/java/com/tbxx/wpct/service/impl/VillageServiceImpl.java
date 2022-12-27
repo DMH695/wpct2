@@ -51,7 +51,9 @@ public class VillageServiceImpl extends ServiceImpl<VillageMapper, Village> impl
             }
             village.put("build",builds);
         }
-
-        return Result.ok(tree);
+        JSONObject res = new JSONObject();
+        res.put("tree",tree);
+        res.put("pageInfo",pageInfo);
+        return Result.ok(res);
     }
 }
