@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -59,7 +60,15 @@ public class BuildInfoController {
     @ApiOperation("获取房屋信息模板")
     @GetMapping("/get/template")
     public void getTemplate(HttpServletResponse response){
+        buildInfoService.getTemplate(response);
+    }
 
+    @PostMapping("/import")
+    public Result importData(MultipartFile file){
+        if (file.isEmpty()){
+            Result.fail("empty file");
+        }
+        return buildInfoService.importData(file);
     }
 
 
