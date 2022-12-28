@@ -1,18 +1,13 @@
 package com.tbxx.wpct.controller;
 
 import com.tbxx.wpct.dto.Result;
-import com.tbxx.wpct.entity.Consumption;
 import com.tbxx.wpct.entity.PayInfo;
-import com.tbxx.wpct.entity.SysRole;
 import com.tbxx.wpct.service.impl.CheckServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
 
 /**
  * @Author ZXX
@@ -44,8 +39,8 @@ public class CheckController {
     //@RequiresPermissions("zujin:list")
     @ApiOperation("后台缴费列表")
     @PostMapping("/blist")
-    public Result ChecksList(@RequestParam int pageNum,@RequestParam String month) {
-        return checkService.checksList(pageNum,month);
+    public Result ChecksList(@RequestParam int pageNum,@RequestParam int pageSize,@RequestParam String month) {
+        return Result.ok(checkService.checksList(pageNum,pageSize,month));
     }
 
     /**

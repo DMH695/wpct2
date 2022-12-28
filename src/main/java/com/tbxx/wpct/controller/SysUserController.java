@@ -3,12 +3,9 @@ package com.tbxx.wpct.controller;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.entity.SysUser;
 import com.tbxx.wpct.service.impl.SysUserServiceImpl;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -60,8 +57,8 @@ public class SysUserController {
     //@RequiresPermissions("user:list")
     @ApiOperation("查看用户列表")
     @GetMapping("/list")
-    public Result UserList(@RequestParam int pageNum){
-        return userService.UserList(pageNum);
+    public Result UserList(@RequestParam int pageNum,@RequestParam int pageSize){
+        return Result.ok(userService.UserList(pageNum,pageSize));
     }
 
 

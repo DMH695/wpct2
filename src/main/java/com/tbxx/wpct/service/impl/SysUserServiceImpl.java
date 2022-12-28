@@ -4,9 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.RandomUtil;
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -15,29 +13,29 @@ import com.tbxx.wpct.dto.LoginFormDTO;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.dto.SR;
 import com.tbxx.wpct.dto.UserDTO;
-import com.tbxx.wpct.entity.SysRole;
 import com.tbxx.wpct.entity.SysUser;
 import com.tbxx.wpct.mapper.SysUserMapper;
 import com.tbxx.wpct.service.SysUserService;
-import com.tbxx.wpct.util.UserHolder;
 import com.tbxx.wpct.util.UserList;
-import com.tbxx.wpct.util.constant.SysConstant;
+import com.tbxx.wpct.util.page.PageRequest;
+import com.tbxx.wpct.util.page.PageResult;
+import com.tbxx.wpct.util.page.PageUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import static com.tbxx.wpct.util.constant.RedisConstants.LOGIN_USER_KEY;
@@ -60,6 +58,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Resource
     private SysUserMapper sysUserMapper;
+
+    public static Page page;
+
 
     /**
      * 登录
@@ -210,15 +211,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     }
 
     @Override
-    public Result UserList(int pageNum) {
+    public PageResult UserList(int pageNum, int pageSize) {
 
-        Page<Object> page = PageHelper.startPage(pageNum, 5);
-        List<UserList> UserList = sysUserMapper.findUserList();
-
-        PageInfo<UserList> pageInfo = new PageInfo<>(UserList, 5);
-        return Result.ok(pageInfo);
+        PageRequest pageRequest = new PageRequest(pageNum, pageSize);
+        return PageUtil.getPageResult(getPageInfo(pageRequest),page);
 
     }
-
+    private PageInfo<?> getPageInfo(PageRequest pageRequest) {
+        int pageNum = pageRequest.getPageNum();
+        int pageSize = pageRequest.getPageSize();
+        //设置分页数据
+        page = PageHelper.startPage(pageNum,pageSize);
+        List<UserList> res = sysUserMapper.findUserList();
+        return new PageInfo<>(res);
+    }
 
 }

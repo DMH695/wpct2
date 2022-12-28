@@ -7,7 +7,6 @@ import com.tbxx.wpct.service.impl.ExamineServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,8 +48,8 @@ public class ExamineController {
     //@RequiresPermissions("shenpi:list")
     @ApiOperation("后台处理（审批）列表")
     @GetMapping("/list")
-    public Result listExamine() {
-        return examineService.listExamine();
+    public Result listExamine(@RequestParam int pageNum,@RequestParam int pageSize) {
+        return Result.ok(examineService.listExamine(pageNum,pageSize));
     }
 
     @ApiOperation("微信用户历史 记录处理（审批）")

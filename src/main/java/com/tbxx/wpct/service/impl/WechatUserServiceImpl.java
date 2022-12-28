@@ -110,4 +110,9 @@ public class WechatUserServiceImpl extends ServiceImpl<WechatUserMapper, WechatU
         }
         return SR.ok();
     }
+
+    @Override
+    public WechatUser getByOpenid(String openid) {
+        return wechatUserMapper.getByOpenid(openid);
+    }
 }

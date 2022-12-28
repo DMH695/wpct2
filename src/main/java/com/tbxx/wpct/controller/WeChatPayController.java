@@ -193,7 +193,12 @@ public class WeChatPayController {
         userUrl = "https://60z8193p42.goho.co//zqb/new.html" + "?openid=" + jsonObject.getString("openid");
 
         //TODO 如果没有授权登录 跳转注册页面  未完成
-        response.sendRedirect(userUrl);
+        //response.sendRedirect(userUrl);
+        if (wechatUserService.getByOpenid(openid).getNumber() == null || "".equals(wechatUserService.getByOpenid(openid).getNumber())){
+            rMap.put("isRegister",Boolean.FALSE.toString());
+        }else {
+            rMap.put("isRegister",Boolean.TRUE.toString());
+        }
         return Result.ok(rMap);
     }
 

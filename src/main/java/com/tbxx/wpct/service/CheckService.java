@@ -3,8 +3,8 @@ package com.tbxx.wpct.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.tbxx.wpct.dto.Result;
-import com.tbxx.wpct.entity.BuildInfo;
 import com.tbxx.wpct.entity.PayInfo;
+import com.tbxx.wpct.util.page.PageResult;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -23,7 +23,7 @@ public interface CheckService extends IService<PayInfo> {
     Result checklist(String openid);
 
     @Transactional
-    Result checksList(int pageNum,String month);
+    PageResult checksList(int pageNum, int pageSize, String month);
 
     @Transactional
     Result deleteCheck(String checkid,String orderId);
