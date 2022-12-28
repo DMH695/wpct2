@@ -13,6 +13,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -23,7 +24,7 @@ import javax.annotation.Resource;
  * @Description
  * @DATE 2022/10/7 18:40
  */
-@CrossOrigin 
+@CrossOrigin
 @Api(tags = "微信用户")
 @Slf4j
 @RestController
@@ -33,6 +34,7 @@ public class WechatUserController {
     @Autowired
     WechatUserServiceImpl wechatUserService;
 
+    @Lazy
     @Autowired
     BuildInfoServiceImpl buildInfoService;
 

@@ -49,7 +49,7 @@ public class VillageServiceImpl extends ServiceImpl<VillageMapper, Village> impl
                 );
                 build.put("rooms",rooms);
             }
-            village.put("build",builds);
+            village.put("builds",builds);
         }
         JSONObject res = new JSONObject();
         res.put("tree",tree);
