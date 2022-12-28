@@ -11,6 +11,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @CrossOrigin
@@ -25,7 +26,13 @@ public class PayInfoController {
     @ApiOperation("信息列表")
     @GetMapping("/list")
     //缴费多条件查询
-    public PageInfo selectCondition(@RequestParam int pageNum,@RequestParam int pageSize,@RequestBody PayInfoVo vo) {
-        return payInfoService.splitpage(pageNum,pageSize,vo);
+    public PageInfo selectCondition(@RequestParam int pageNum, int pageSize,
+                                    @RequestParam(required = false)String villageName,
+                                    @RequestParam(required = false)String buildNo,
+                                    @RequestParam(required = false)String name,
+                                    @RequestParam(required = false)String payStatus,
+                                    @RequestParam(required = false)LocalDateTime payBeginTime,
+                                    @RequestParam(required = false)LocalDateTime payEndTime) {
+        return payInfoService.splitpage(pageNum,pageSize,villageName,buildNo,name,payStatus,payBeginTime,payEndTime);
     }
 }
