@@ -3,6 +3,7 @@ package com.tbxx.wpct.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.entity.Examine;
+import com.tbxx.wpct.util.page.PageResult;
 
 /**
  * @Author ZXX
@@ -16,7 +17,7 @@ public interface ExamineService extends IService<Examine> {
     
     Result userExamineList(String openid);
 
-    Result listExamine();
+    PageResult listExamine(int pageNum, int pageSize);
 
 
     Result soluExamine(Integer id, String openid, String resolveMsg);

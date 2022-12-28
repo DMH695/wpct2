@@ -3,6 +3,7 @@ package com.tbxx.wpct.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.Result;
@@ -11,14 +12,19 @@ import com.tbxx.wpct.entity.Consumption;
 import com.tbxx.wpct.entity.OrderInfo;
 import com.tbxx.wpct.entity.PayInfo;
 import com.tbxx.wpct.enums.OrderStatus;
-import com.tbxx.wpct.mapper.*;
+import com.tbxx.wpct.mapper.CheckMapper;
+import com.tbxx.wpct.mapper.ConsumptionMapper;
+import com.tbxx.wpct.mapper.OrderInfoMapper;
+import com.tbxx.wpct.mapper.PayInfoMapper;
 import com.tbxx.wpct.service.CheckService;
 import com.tbxx.wpct.util.CheckUtil;
 import com.tbxx.wpct.util.OrderNoUtils;
 import com.tbxx.wpct.util.UserHolder;
+import com.tbxx.wpct.util.page.PageRequest;
+import com.tbxx.wpct.util.page.PageResult;
+import com.tbxx.wpct.util.page.PageUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -52,6 +58,9 @@ public class CheckServiceImpl extends ServiceImpl<CheckMapper, PayInfo> implemen
 
     @Autowired
     ConsumptionServiceImpl consumptionService;
+
+    public static Page page;
+
 
 
     /**
@@ -103,13 +112,22 @@ public class CheckServiceImpl extends ServiceImpl<CheckMapper, PayInfo> implemen
      * 后端缴费列表
      */
     @Override
-    public Result checksList(int pageNum, String month) {
-        PageHelper.startPage(pageNum, 5);
+    public PageResult checksList(int pageNum, int pageSize, String month) {
+        /*PageHelper.startPage(pageNum, pageSize);
         List<PayInfo> payInfos = baseMapper.checksList(month);
-        PageInfo<PayInfo> pageInfo = new PageInfo<>(payInfos, 5);
-        return Result.ok(pageInfo);
+        PageInfo<PayInfo> pageInfo = new PageInfo<>(payInfos, 5);*/
+        PageRequest pageRequest = new PageRequest(pageNum, pageSize);
+        return PageUtil.getPageResult(getPageInfo(pageRequest,month),page);
     }
 
+    private PageInfo<?> getPageInfo(PageRequest pageRequest,String month) {
+        int pageNum = pageRequest.getPageNum();
+        int pageSize = pageRequest.getPageSize();
+        //设置分页数据
+        page = PageHelper.startPage(pageNum,pageSize);
+        List<PayInfo> res = baseMapper.checksList(month);
+        return new PageInfo<>(res);
+    }
 
     /**
      * 前端微信用户缴费列表

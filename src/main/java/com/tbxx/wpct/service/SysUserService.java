@@ -5,7 +5,7 @@ import com.tbxx.wpct.dto.LoginFormDTO;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.dto.SR;
 import com.tbxx.wpct.entity.SysUser;
-import org.apache.shiro.authz.AuthorizationInfo;
+import com.tbxx.wpct.util.page.PageResult;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,5 +33,5 @@ public interface SysUserService extends IService<SysUser> {
 
     void updateUserRole(Integer roleId);
 
-    Result UserList(int pageNum);
+    PageResult UserList(int pageNum, int pageSize);
 }

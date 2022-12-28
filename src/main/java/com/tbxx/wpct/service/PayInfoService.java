@@ -1,6 +1,7 @@
 package com.tbxx.wpct.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.entity.PayInfo;
 
@@ -14,5 +15,6 @@ import java.util.List;
  */
 
 public interface PayInfoService extends IService<PayInfo> {
-    List<PayInfo> selectCondition(PayInfoVo vo);
+    PageInfo splitpage(int pageNum, int pageSize,PayInfoVo vo);
+
 }

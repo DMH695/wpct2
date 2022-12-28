@@ -3,10 +3,16 @@ package com.tbxx.wpct.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.entity.Examine;
 import com.tbxx.wpct.mapper.ExamineMapper;
 import com.tbxx.wpct.service.ExamineService;
+import com.tbxx.wpct.util.page.PageRequest;
+import com.tbxx.wpct.util.page.PageResult;
+import com.tbxx.wpct.util.page.PageUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +29,7 @@ import java.util.List;
 @Slf4j
 @Service
 public class ExamineServiceImpl extends ServiceImpl<ExamineMapper, Examine> implements ExamineService {
+    public static Page page;
 
     /**
      * 新增审批
@@ -38,9 +45,19 @@ public class ExamineServiceImpl extends ServiceImpl<ExamineMapper, Examine> impl
      * 后台审批列表
      */
     @Override
-    public Result listExamine() {
-        List<Examine> examines = baseMapper.listExamine();
-        return Result.ok(examines);
+    public PageResult listExamine(int pageNum, int pageSize) {
+        PageRequest pageRequest = new PageRequest(pageNum, pageSize);
+        return PageUtil.getPageResult(getPageInfo(pageRequest),page);
+        /*List<Examine> examines = baseMapper.listExamine();
+        return Result.ok(examines);*/
+    }
+    private PageInfo<?> getPageInfo(PageRequest pageRequest) {
+        int pageNum = pageRequest.getPageNum();
+        int pageSize = pageRequest.getPageSize();
+        //设置分页数据
+        page = PageHelper.startPage(pageNum,pageSize);
+        List<Examine> res = baseMapper.listExamine();
+        return new PageInfo<>(res);
     }
 
     /**

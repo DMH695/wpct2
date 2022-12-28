@@ -22,4 +22,6 @@ public interface WechatUserService extends IService<WechatUser> {
     Result getInfo(String openid);
 
     SR getInfoToBackend();
+
+    WechatUser getByOpenid(String openid);
 }
