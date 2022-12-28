@@ -1,6 +1,8 @@
 package com.tbxx.wpct.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.entity.PayInfo;
 import com.tbxx.wpct.mapper.PayInfoMapper;
@@ -24,8 +26,10 @@ public class PayInfoServiceImpl extends ServiceImpl<PayInfoMapper, PayInfo> impl
     PayInfoMapper payInfoMapper;
 
     @Override
-    //缴费多条件查询
-    public List<PayInfo> selectCondition(PayInfoVo vo) {
-        return payInfoMapper.selectCondition(vo);
+    public PageInfo splitpage(int pageNum, int pageSize,PayInfoVo vo) {
+        PageHelper.startPage(pageNum,pageSize);
+        List list = payInfoMapper.selectCondition(vo);
+        PageInfo<PayInfo> pageInfo = new PageInfo(list);
+        return pageInfo;
     }
 }
