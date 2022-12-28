@@ -70,28 +70,29 @@ public class BuildInfoServiceImpl extends ServiceImpl<BuildInfoMapper, BuildInfo
         List<HouseInfoImport> houseInfoImports = EasyExcel.read(file.getInputStream()).head(HouseInfoImport.class).sheet().doReadSync();
         int num = 0;
         for (HouseInfoImport houseInfoImport : houseInfoImports) {
-            Consumption consumption = Consumption.builder()
-                    .aFee(houseInfoImport.getAFee()).area(houseInfoImport.getArea())
-                    .bFee(houseInfoImport.getBFee()).carFee(houseInfoImport.getCarFee())
-                    .cFee(houseInfoImport.getCFee()).deposit(houseInfoImport.getDeposit())
-                    .dFee(houseInfoImport.getDFee()).discount(houseInfoImport.getDiscount())
-                    .electricity(houseInfoImport.getElectricity())
-                    .gasFee(houseInfoImport.getGasFee()).limitArea(houseInfoImport.getLimitArea())
-                    .overareaFee(houseInfoImport.getOverareaFee())
-                    .property(houseInfoImport.getProperty()).propertyFee(houseInfoImport.getPropertyFee())
-                    .waterFee(houseInfoImport.getWaterFee()).build();
-            PayInfo payInfo = PayInfo.builder()
-                    .buildNo(houseInfoImport.getBuildNo()).car(houseInfoImport.getCarType())
-                    .conditionNumber(houseInfoImport.getConditionNumber())
-                    .name(houseInfoImport.getName()).number(houseInfoImport.getNumber())
-                    .personNumber(houseInfoImport.getPersonNumber()).relation(houseInfoImport.getRelation())
-                    .remarks(houseInfoImport.getRemarks()).resident(houseInfoImport.getResident())
-                    .roomNo(houseInfoImport.getRoomNo()).villageName(houseInfoImport.getVillageName())
-                    .consumption(consumption).build();
-            checkService.addCheck(payInfo);
+            checkService.addCheck(houseInfoImport2PayInfo(houseInfoImport));
             num++;
         }
         return Result.ok(num);
+    }
+
+    // TODO 日期筛选
+    @SneakyThrows
+    @Override
+    public void export2Excel(String villageName, String buildNo, String payStatus, String name, String beganDate, String endDate, HttpServletResponse response) {
+        List<PayInfo> payInfos = checkService.query()
+                .like("village_name", villageName)
+                .like("build_no", buildNo)
+                .eq("pay_status", payStatus).list();
+        response.setHeader("Content-Disposition", "attachment;filename=template.xlsx");
+        List<HouseInfoImport> houseInfoImports = new ArrayList<>();
+        for (PayInfo payInfo : payInfos) {
+            houseInfoImports.add(payInfo2HouseInfoImport(payInfo));
+        }
+        EasyExcel.write(response.getOutputStream())
+                .head(HouseInfoImport.class)
+                .sheet(villageName + "#" + buildNo + "#" + payStatus + "#" + name)
+                .doWrite(houseInfoImports);
     }
 
     @Override
@@ -118,5 +119,47 @@ public class BuildInfoServiceImpl extends ServiceImpl<BuildInfoMapper, BuildInfo
         }
 
         return Result.ok(buildInfoList);
-    };
+    }
+
+    HouseInfoImport payInfo2HouseInfoImport(PayInfo payInfo){
+        Consumption consumption = payInfo.getConsumption();
+        return HouseInfoImport.builder()
+                .villageName(payInfo.getVillageName()).buildNo(payInfo.getBuildNo())
+                .roomNo(payInfo.getRoomNo()).name(payInfo.getName()).number(payInfo.getNumber())
+                .resident(payInfo.getResident()).houseType(payInfo.getHouseType())
+                .carType(payInfo.getCar()).relation(payInfo.getRelation())
+                .conditionNumber(payInfo.getConditionNumber())
+                .personNumber(payInfo.getPersonNumber()).rent(consumption.getRent())
+                .area(consumption.getArea()).limitArea(consumption.getLimitArea())
+                .overArea(consumption.getOverArea()).overareaFee(consumption.getOverareaFee())
+                .property(consumption.getProperty()).propertyFee(consumption.getPropertyFee())
+                .deposit(consumption.getDeposit()).waterFee(consumption.getWaterFee())
+                .electricity(consumption.getElectricity()).gasFee(consumption.getGasFee())
+                .carFee(consumption.getCarFee()).aFee(consumption.getAFee())
+                .bFee(consumption.getBFee()).cFee(consumption.getCFee())
+                .dFee(consumption.getDFee()).discount(consumption.getDiscount())
+                .remarks(payInfo.getRemarks()).build();
+    }
+
+    PayInfo houseInfoImport2PayInfo(HouseInfoImport houseInfoImport){
+        Consumption consumption = Consumption.builder()
+                .aFee(houseInfoImport.getAFee()).area(houseInfoImport.getArea())
+                .bFee(houseInfoImport.getBFee()).carFee(houseInfoImport.getCarFee())
+                .cFee(houseInfoImport.getCFee()).deposit(houseInfoImport.getDeposit())
+                .dFee(houseInfoImport.getDFee()).discount(houseInfoImport.getDiscount())
+                .electricity(houseInfoImport.getElectricity())
+                .gasFee(houseInfoImport.getGasFee()).limitArea(houseInfoImport.getLimitArea())
+                .overareaFee(houseInfoImport.getOverareaFee())
+                .property(houseInfoImport.getProperty()).propertyFee(houseInfoImport.getPropertyFee())
+                .waterFee(houseInfoImport.getWaterFee()).build();
+        return PayInfo.builder()
+                .buildNo(houseInfoImport.getBuildNo()).car(houseInfoImport.getCarType())
+                .conditionNumber(houseInfoImport.getConditionNumber())
+                .name(houseInfoImport.getName()).number(houseInfoImport.getNumber())
+                .personNumber(houseInfoImport.getPersonNumber()).relation(houseInfoImport.getRelation())
+                .remarks(houseInfoImport.getRemarks()).resident(houseInfoImport.getResident())
+                .roomNo(houseInfoImport.getRoomNo()).villageName(houseInfoImport.getVillageName())
+                .consumption(consumption).build();
+    }
+
 }

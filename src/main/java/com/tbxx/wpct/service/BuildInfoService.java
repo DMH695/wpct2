@@ -28,4 +28,7 @@ public interface BuildInfoService extends IService<BuildInfo> {
     void getTemplate(HttpServletResponse response);
 
     Result importData(MultipartFile file);
+
+    void export2Excel(String villageName, String buildNo, String payStatus
+            , String name, String beganDate,String endDate,HttpServletResponse response);
 }

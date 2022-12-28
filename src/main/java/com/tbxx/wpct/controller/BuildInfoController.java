@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @Author ZXX
@@ -63,12 +65,20 @@ public class BuildInfoController {
         buildInfoService.getTemplate(response);
     }
 
+    @ApiOperation("导入房屋信息表格")
     @PostMapping("/import")
     public Result importData(MultipartFile file){
         if (file.isEmpty()){
             Result.fail("empty file");
         }
         return buildInfoService.importData(file);
+    }
+
+    @ApiOperation("按条件筛选导出excel")
+    @GetMapping("/export")
+    public void export2Excel(String villageName, String buildNo, String payStatus
+            , String name, String beganDate,String endDate,HttpServletResponse response){
+        buildInfoService.export2Excel(villageName, buildNo, payStatus, name, beganDate, endDate, response);
     }
 
 
