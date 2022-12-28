@@ -4,21 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81e9da3f-8dd7-42c9-b16f-150d9be9c6ca" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a549c184-0598-4165-915c-927df75cec95.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a549c184-0598-4165-915c-927df75cec95.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="81e9da3f-8dd7-42c9-b16f-150d9be9c6ca" name="Default Changelist" comment="Default Changelist">
+      <change afterPath="$PROJECT_DIR$/src/test/java/tbxx/wpct/tex.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/PayInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/PayInfoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/mapper/PayInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/mapper/PayInfoMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/service/PayInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/service/PayInfoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/service/impl/PayInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/service/impl/PayInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/PayInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/PayInfoMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,6 +38,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -46,7 +52,7 @@
       <recent name="E:\武平城投新\wpct_v2\backend" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.tex.texy">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -60,6 +66,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="tex.texy" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tbxx.wpct.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tbxx.wpct" />
+      <option name="MAIN_CLASS_NAME" value="tbxx.wpct.tex" />
+      <option name="METHOD_NAME" value="texy" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="WpctApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.tbxx.wpct.WpctApplication" />
@@ -67,6 +89,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.tex.texy" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SshConsoleOptionsProvider">
@@ -89,7 +116,16 @@
       <workItem from="1671802479185" duration="1096000" />
       <workItem from="1671852438318" duration="1601000" />
       <workItem from="1672193455403" duration="1007000" />
+      <workItem from="1672214267936" duration="2976000" />
     </task>
+    <task id="LOCAL-00001" summary="Default Changelist">
+      <created>1672214440974</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672214440974</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,5 +146,7 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
+    <MESSAGE value="Default Changelist" />
+    <option name="LAST_COMMIT_MESSAGE" value="Default Changelist" />
   </component>
 </project>

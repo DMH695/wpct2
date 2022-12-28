@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.entity.PayInfo;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -15,6 +16,11 @@ import java.util.List;
  */
 
 public interface PayInfoService extends IService<PayInfo> {
-    PageInfo splitpage(int pageNum, int pageSize,PayInfoVo vo);
+    PageInfo splitpage(int pageNum, int pageSize,String villageName,
+    String buildNo,
+    String name,
+    String payStatus,
+    LocalDateTime payBeginTime,
+    LocalDateTime payEndTime);
 
 }

@@ -10,6 +10,8 @@ import com.tbxx.wpct.service.PayInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -26,9 +28,14 @@ public class PayInfoServiceImpl extends ServiceImpl<PayInfoMapper, PayInfo> impl
     PayInfoMapper payInfoMapper;
 
     @Override
-    public PageInfo splitpage(int pageNum, int pageSize,PayInfoVo vo) {
+    public PageInfo splitpage(int pageNum, int pageSize,String villageName,
+    String buildNo,
+    String name,
+    String payStatus,
+    LocalDateTime payBeginTime,
+    LocalDateTime payEndTime) {
         PageHelper.startPage(pageNum,pageSize);
-        List list = payInfoMapper.selectCondition(vo);
+        List list = payInfoMapper.selectCondition(villageName,buildNo,name,payStatus,payBeginTime,payEndTime);
         PageInfo<PayInfo> pageInfo = new PageInfo(list);
         return pageInfo;
     }
