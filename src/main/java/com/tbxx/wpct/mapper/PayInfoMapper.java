@@ -18,10 +18,5 @@ import java.util.List;
 @Mapper
 public interface PayInfoMapper extends BaseMapper<PayInfo> {
     //缴费多条件查询
-    List<PayInfo> selectCondition(String villageName,
-    String buildNo,
-    String name,
-    String payStatus,
-    LocalDateTime payBeginTime,
-    LocalDateTime payEndTime);
+    List<PayInfo> selectCondition(PayInfoVo vo);
 }

@@ -2,6 +2,7 @@ package com.tbxx.wpct.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.PayInfoVo;
+import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.entity.PayInfo;
 import com.tbxx.wpct.service.PayInfoService;
 import io.swagger.annotations.Api;
@@ -26,13 +27,7 @@ public class PayInfoController {
     @ApiOperation("信息列表")
     @GetMapping("/list")
     //缴费多条件查询
-    public PageInfo selectCondition(@RequestParam int pageNum, int pageSize,
-                                    @RequestParam(required = false)String villageName,
-                                    @RequestParam(required = false)String buildNo,
-                                    @RequestParam(required = false)String name,
-                                    @RequestParam(required = false)String payStatus,
-                                    @RequestParam(required = false)LocalDateTime payBeginTime,
-                                    @RequestParam(required = false)LocalDateTime payEndTime) {
-        return payInfoService.splitpage(pageNum,pageSize,villageName,buildNo,name,payStatus,payBeginTime,payEndTime);
+    public Result payInfoList(@RequestParam int pageNum, @RequestParam int pageSize, @RequestParam(required = false) PayInfoVo vo) {
+        return Result.ok(payInfoService.splitpage(pageNum,pageSize,vo));
     }
 }

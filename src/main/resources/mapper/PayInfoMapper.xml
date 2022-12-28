@@ -31,7 +31,7 @@
             remarks,update_user,order_no,relation,parking1,parking2
     </sql>
     <!--缴费多条件查询-->
-    <select id="selectCondition" resultMap="PayInfoMap" >
+    <select id="selectCondition" resultMap="PayInfoMap" parameterType="com.tbxx.wpct.dto.PayInfoVo">
         select <include refid="Base_Column_List"></include>
         from tb_payinfo
         <where>
