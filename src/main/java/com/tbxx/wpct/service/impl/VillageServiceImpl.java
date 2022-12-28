@@ -33,9 +33,17 @@ public class VillageServiceImpl extends ServiceImpl<VillageMapper, Village> impl
 
     @Override
     public Result getTree(int pageSize, int pageNum) {
-        Page<Village> page = PageHelper.startPage(pageNum,pageSize);
-        List<Village> villages = baseMapper.selectList(null);
-        PageInfo<Village> pageInfo = new PageInfo<>(villages,pageSize);
+        Page<Village> page;
+        PageInfo<Village> pageInfo = null;
+        List<Village> villages;
+        if (pageSize != -1){
+            page = PageHelper.startPage(pageNum,pageSize);
+            villages = baseMapper.selectList(null);
+            pageInfo = new PageInfo<>(villages,pageSize);
+        }else {
+            villages = baseMapper.selectList(null);
+        }
+
         JSONArray tree = JSONArray.parseArray(JSON.toJSONString(villages));
         for (Object o : tree) {
             JSONObject village = ((JSONObject) o);
@@ -47,13 +55,15 @@ public class VillageServiceImpl extends ServiceImpl<VillageMapper, Village> impl
                 JSONArray rooms = JSONArray.parseArray(
                         JSON.toJSONString(roomService.listByBuild(build.getInteger("id")))
                 );
-                build.put("rooms",rooms);
+                build.put("children",rooms);
             }
-            village.put("build",builds);
+            village.put("children",builds);
         }
         JSONObject res = new JSONObject();
         res.put("tree",tree);
-        res.put("pageInfo",pageInfo);
+        if (pageSize != -1){
+            res.put("pageInfo",pageInfo);
+        }
         return Result.ok(res);
     }
 }
