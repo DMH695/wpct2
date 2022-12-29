@@ -1,6 +1,7 @@
 package com.tbxx.wpct.dto.model;
 
 import com.alibaba.excel.annotation.ExcelProperty;
+import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -157,4 +158,10 @@ public class HouseInfoImport {
      */
     @ExcelProperty("备注")
     private String remarks;
+
+    @ExcelProperty("车牌号")
+    private String carNumber;
+
+    @ExcelProperty("其它费用")
+    private Integer otherFee;
 }

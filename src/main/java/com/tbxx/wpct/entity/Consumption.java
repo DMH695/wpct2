@@ -125,11 +125,15 @@ public class Consumption implements Serializable {
      */
     private Integer electricityFee;
 
-
     /**
      * 月金额
      */
     private Integer monthCost;
+
+    /**
+     * 其它费用
+     */
+    private Integer otherFee;
 
 
 }

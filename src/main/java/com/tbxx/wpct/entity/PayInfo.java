@@ -64,6 +64,11 @@ public class PayInfo implements Serializable {
     private String car;
 
     /**
+     * 车牌号
+     */
+    private String carNumber;
+
+    /**
      * 户口
      */
     private String resident;

@@ -140,7 +140,8 @@ public class BuildInfoServiceImpl extends ServiceImpl<BuildInfoMapper, BuildInfo
                 .carFee(consumption.getCarFee()).aFee(consumption.getAFee())
                 .bFee(consumption.getBFee()).cFee(consumption.getCFee())
                 .dFee(consumption.getDFee()).discount(consumption.getDiscount())
-                .remarks(payInfo.getRemarks()).build();
+                .remarks(payInfo.getRemarks()).otherFee(consumption.getOtherFee())
+                .carNumber(payInfo.getCarNumber()).build();
     }
 
     PayInfo houseInfoImport2PayInfo(HouseInfoImport houseInfoImport){
@@ -153,7 +154,7 @@ public class BuildInfoServiceImpl extends ServiceImpl<BuildInfoMapper, BuildInfo
                 .gasFee(houseInfoImport.getGasFee()).limitArea(houseInfoImport.getLimitArea())
                 .overareaFee(houseInfoImport.getOverareaFee())
                 .property(houseInfoImport.getProperty()).propertyFee(houseInfoImport.getPropertyFee())
-                .waterFee(houseInfoImport.getWaterFee()).build();
+                .waterFee(houseInfoImport.getWaterFee()).otherFee(houseInfoImport.getOtherFee()).build();
         return PayInfo.builder()
                 .buildNo(houseInfoImport.getBuildNo()).car(houseInfoImport.getCarType())
                 .conditionNumber(houseInfoImport.getConditionNumber())
@@ -161,7 +162,7 @@ public class BuildInfoServiceImpl extends ServiceImpl<BuildInfoMapper, BuildInfo
                 .personNumber(houseInfoImport.getPersonNumber()).relation(houseInfoImport.getRelation())
                 .remarks(houseInfoImport.getRemarks()).resident(houseInfoImport.getResident())
                 .roomNo(houseInfoImport.getRoomNo()).villageName(houseInfoImport.getVillageName())
-                .consumption(consumption).build();
+                .consumption(consumption).carNumber(houseInfoImport.getCarNumber()).build();
     }
 
 }

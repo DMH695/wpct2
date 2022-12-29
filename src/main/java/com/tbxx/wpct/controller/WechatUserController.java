@@ -42,8 +42,7 @@ public class WechatUserController {
     @ApiOperation("微信用户注册")
     @PostMapping ("/register")
     public Result register(@RequestBody WechatUser wechatUser){
-        Result register = wechatUserService.register(wechatUser);
-        return register;
+        return wechatUserService.register(wechatUser);
     }
 
     @ApiOperation("微信用户信息")
