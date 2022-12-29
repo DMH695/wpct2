@@ -50,13 +50,13 @@ public class WechatUserServiceImpl extends ServiceImpl<WechatUserMapper, WechatU
     @Override
     public Result register(WechatUser wechatUser) {
         String phoneNumber = wechatUser.getNumber();
-        String pid = wechatUser.getPid();
+        //String pid = wechatUser.getPid();
         if (!phoneNumber.matches(PHONE_REGEX)) {
             return Result.fail("手机号格式有误，请重新输入~");
         }
-        if (!(pid.matches(PID_REGEX18) || pid.matches(PID_REGEX15))) {
+        /*if (!(pid.matches(PID_REGEX18) || pid.matches(PID_REGEX15))) {
             return Result.fail("身份证格式有误，请重新输入~");
-        }
+        }*/
         log.warn("手机身份证格式验证");
 
         //用户注册
@@ -67,7 +67,7 @@ public class WechatUserServiceImpl extends ServiceImpl<WechatUserMapper, WechatU
         updateWrapper.eq("openid", wechatUser.getOpenid());
         WechatUser user = new WechatUser();
         user.setNumber(phoneNumber);
-        user.setPid(pid);
+        //user.setPid(pid);
         user.setName(wechatUser.getName());
         wechatUserMapper.update(user, updateWrapper);
 
