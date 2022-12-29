@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.entity.PayInfo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;

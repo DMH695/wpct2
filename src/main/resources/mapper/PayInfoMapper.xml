@@ -27,19 +27,19 @@
     </resultMap>
     <sql id="Base_Column_List" >
         payinfo_id,village_name,build_no,room_no,name,pid,number,car,resident,condition_number,
-            person_number,pay_status,house_type,pay_begin_time,pay_end_time,update_time,
-            remarks,update_user,order_no,relation,parking1,parking2
+            person_number,pay_status,pay_begin_time,pay_end_time,update_time,
+            remarks,update_user,order_no,relation
     </sql>
     <!--缴费多条件查询-->
-    <select id="selectCondition" resultMap="PayInfoMap" parameterType="com.tbxx.wpct.dto.PayInfoVo">
-        select <include refid="Base_Column_List"></include>
+    <select id="selectCondition"  resultType="com.tbxx.wpct.entity.PayInfo2">
+        select <!--<include refid="Base_Column_List"></include>--> *
         from tb_payinfo
         <where>
             <if test="villageName != null and villageName != ''">
-                and village_name =#{villageName}
+                and village_name=#{villageName}
             </if>
             <if test="buildNo != null and buildNo != ''">
-                and build_no =#{buildNo}
+                and build_no=#{buildNo}
             </if>
             <if test="name != null and name != ''">
                 and name =#{name}

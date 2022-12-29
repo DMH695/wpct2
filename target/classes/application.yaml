@@ -5,12 +5,12 @@ spring:
   application:
     name: wpct
   datasource:
-    url: jdbc:mysql://47.98.120.130:3306/wpct2?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://124.71.9.121:3306/wpct2?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
     username: wpct2
     password: 123456
 
   redis:
-    host: 47.98.120.130
+    host: 124.71.9.121
     port: 6379
     lettuce:
       pool:
