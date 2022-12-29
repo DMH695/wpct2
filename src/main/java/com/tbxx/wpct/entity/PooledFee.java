@@ -31,6 +31,16 @@ public class PooledFee implements Serializable {
     @ExcelProperty("小区号")
     private String villageName;
     /**
+     * 楼栋号
+     */
+    @ExcelProperty("楼栋号")
+    private String buildName;
+    /**
+     * 房间号
+     */
+    @ExcelProperty("房间号")
+    private String roomName;
+    /**
      * 公电梯费
      */
     @ExcelProperty("公电梯费")
@@ -50,5 +60,6 @@ public class PooledFee implements Serializable {
      */
     @ExcelProperty("创建时间")
     private LocalDateTime createTime;
+
 
 }

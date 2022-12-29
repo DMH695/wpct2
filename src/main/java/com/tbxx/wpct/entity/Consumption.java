@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -18,6 +19,7 @@ import java.io.Serializable;
 
 @Data
 @TableName(value = "tb_consumption")
+@Builder
 public class Consumption implements Serializable {
     /**
      * 房屋id
@@ -123,11 +125,15 @@ public class Consumption implements Serializable {
      */
     private Integer electricityFee;
 
-
     /**
      * 月金额
      */
     private Integer monthCost;
+
+    /**
+     * 其它费用
+     */
+    private Integer otherFee;
 
 
 }

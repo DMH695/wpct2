@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -20,6 +21,7 @@ import java.util.Date;
 
 @Data
 @TableName("tb_payinfo")
+@Builder
 public class PayInfo implements Serializable {
     /**
      * 缴费id
@@ -60,6 +62,11 @@ public class PayInfo implements Serializable {
      * 车类
      */
     private String car;
+
+    /**
+     * 车牌号
+     */
+    private String carNumber;
 
     /**
      * 户口

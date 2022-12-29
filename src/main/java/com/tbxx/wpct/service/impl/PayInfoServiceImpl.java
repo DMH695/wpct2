@@ -1,15 +1,21 @@
 package com.tbxx.wpct.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.entity.PayInfo;
 import com.tbxx.wpct.mapper.PayInfoMapper;
 import com.tbxx.wpct.service.PayInfoService;
+import com.tbxx.wpct.util.page.PageRequest;
+import com.tbxx.wpct.util.page.PageResult;
+import com.tbxx.wpct.util.page.PageUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -25,11 +31,20 @@ public class PayInfoServiceImpl extends ServiceImpl<PayInfoMapper, PayInfo> impl
     @Autowired
     PayInfoMapper payInfoMapper;
 
+    public static Page page;
+
     @Override
-    public PageInfo splitpage(int pageNum, int pageSize,PayInfoVo vo) {
-        PageHelper.startPage(pageNum,pageSize);
-        List list = payInfoMapper.selectCondition(vo);
-        PageInfo<PayInfo> pageInfo = new PageInfo(list);
-        return pageInfo;
+    public PageResult splitpage(int pageNum, int pageSize, PayInfoVo vo) {
+        PageRequest pageRequest = new PageRequest(pageNum, pageSize);
+        return PageUtil.getPageResult(getPageInfo(pageRequest,vo),page);
+    }
+
+        private PageInfo<?> getPageInfo(PageRequest pageRequest, PayInfoVo vo) {
+        int pageNum = pageRequest.getPageNum();
+        int pageSize = pageRequest.getPageSize();
+        //设置分页数据
+        page = PageHelper.startPage(pageNum,pageSize);
+        List<PayInfo> res = payInfoMapper.selectCondition(vo);
+        return new PageInfo<>(res);
     }
 }

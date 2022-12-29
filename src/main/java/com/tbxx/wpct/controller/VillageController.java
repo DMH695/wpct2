@@ -40,7 +40,7 @@ public class VillageController {
         return Result.ok(villageService.updateById(village));
     }
 
-    @ApiOperation("获取小区下楼房树形结构信息")
+    @ApiOperation("获取小区下楼房树形结构信息,pageSize为-1时获取全部")
     @GetMapping("/tree")
     public Result tree(@RequestParam Integer pageSize, @RequestParam Integer pageNum){
         return villageService.getTree(pageSize,pageNum);

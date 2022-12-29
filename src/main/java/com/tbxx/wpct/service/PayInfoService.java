@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.entity.PayInfo;
+import com.tbxx.wpct.util.page.PageResult;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -15,6 +18,7 @@ import java.util.List;
  */
 
 public interface PayInfoService extends IService<PayInfo> {
-    PageInfo splitpage(int pageNum, int pageSize,PayInfoVo vo);
+    @Transactional
+    PageResult splitpage(int pageNum, int pageSize,PayInfoVo vo);
 
 }
