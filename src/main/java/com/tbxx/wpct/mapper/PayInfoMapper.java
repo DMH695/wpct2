@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.entity.PayInfo;
+import com.tbxx.wpct.entity.PayInfo2;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,5 +20,5 @@ import java.util.List;
 @Mapper
 public interface PayInfoMapper extends BaseMapper<PayInfo> {
     //缴费多条件查询
-    List<PayInfo> selectCondition(PayInfoVo vo);
+    List<PayInfo2> selectCondition(PayInfoVo vo);
 }
