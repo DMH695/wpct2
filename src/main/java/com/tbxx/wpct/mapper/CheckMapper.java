@@ -6,6 +6,7 @@ import com.tbxx.wpct.dto.WechatUserDTO;
 import com.tbxx.wpct.entity.BuildInfo;
 import com.tbxx.wpct.entity.Consumption;
 import com.tbxx.wpct.entity.PayInfo;
+import com.tbxx.wpct.entity.PayInfo2;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ import java.util.List;
 
 public interface CheckMapper extends BaseMapper<PayInfo> {
 
-    List<PayInfo> checksList(String month);
+    List<PayInfo2> checksList(String month);
 
     //查询未缴费房屋 对应的openid
     List<WechatUserDTO> sendMsg();

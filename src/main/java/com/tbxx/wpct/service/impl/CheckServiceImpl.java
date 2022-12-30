@@ -7,10 +7,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.Result;
-import com.tbxx.wpct.entity.BuildInfo;
-import com.tbxx.wpct.entity.Consumption;
-import com.tbxx.wpct.entity.OrderInfo;
-import com.tbxx.wpct.entity.PayInfo;
+import com.tbxx.wpct.entity.*;
 import com.tbxx.wpct.enums.OrderStatus;
 import com.tbxx.wpct.mapper.CheckMapper;
 import com.tbxx.wpct.mapper.ConsumptionMapper;
@@ -125,7 +122,7 @@ public class CheckServiceImpl extends ServiceImpl<CheckMapper, PayInfo> implemen
         int pageSize = pageRequest.getPageSize();
         //设置分页数据
         page = PageHelper.startPage(pageNum,pageSize);
-        List<PayInfo> res = baseMapper.checksList(month);
+        List<PayInfo2> res = baseMapper.checksList(month);
         return new PageInfo<>(res);
     }
 

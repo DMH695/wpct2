@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -21,6 +23,8 @@ import java.util.Date;
 
 @Data
 @TableName("tb_payinfo")
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class PayInfo implements Serializable {
     /**

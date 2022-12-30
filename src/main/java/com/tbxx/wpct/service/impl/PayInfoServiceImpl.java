@@ -6,6 +6,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.entity.PayInfo;
+import com.tbxx.wpct.entity.PayInfo2;
 import com.tbxx.wpct.mapper.PayInfoMapper;
 import com.tbxx.wpct.service.PayInfoService;
 import com.tbxx.wpct.util.page.PageRequest;
@@ -44,7 +45,7 @@ public class PayInfoServiceImpl extends ServiceImpl<PayInfoMapper, PayInfo> impl
         int pageSize = pageRequest.getPageSize();
         //设置分页数据
         page = PageHelper.startPage(pageNum,pageSize);
-        List<PayInfo> res = payInfoMapper.selectCondition(vo);
+        List<PayInfo2> res = payInfoMapper.selectCondition(vo);
         return new PageInfo<>(res);
     }
 }
