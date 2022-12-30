@@ -26,8 +26,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class PayInfo implements Serializable {
     /**
      * 缴费id
@@ -139,7 +137,6 @@ public class PayInfo implements Serializable {
     /**
      * 保障类型
      */
-    private String guaranteeType;
 
 
 

@@ -53,11 +53,14 @@
     <!--缴费多条件查询-->
     <select id="selectCondition" resultMap="PayInfoMap">
         select
-               payinfo_id, village_name, build_no, room_no, `name`, pid
-             , `number`, car, resident, condition_number, person_number
-             , pay_status, guarantee_type, pay_begin_time, pay_end_time
-             , update_time, remarks, update_user, order_no, relation
-        from tb_payinfo
+            payinfo_id, village_name, build_no, room_no, `name`, pid
+            , `number`, car, resident, condition_number, person_number
+            , pay_status, guarantee_type, pay_begin_time, pay_end_time
+            , update_time, remarks, update_user, order_no, relation,build_id
+            ,area_fee,area,limit_area,over_area,overarea_fee,property,property_fee
+            ,deposit,water_fee,electricity,gas_fee,car_fee,a_fee,b_fee,c_fee,d_fee
+            ,discount,lift_fee,gwater_fee,electricity_fee,month_cost,other_fee
+        from tb_payinfo p left join tb_consumption c on p.payinfo_id = c.build_id
         <where>
             <if test="villageName != null and villageName != ''">
                 and village_name =#{villageName}
@@ -81,5 +84,7 @@
                 and pay_begin_time &gt;= #{payBeginTime} and pay_end_time &lt;= #{payEndTime}
             </if>
         </where>
+
+
     </select>
 </mapper>
