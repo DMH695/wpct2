@@ -4,7 +4,7 @@
 
 <mapper namespace="com.tbxx.wpct.mapper.CheckMapper">
 
-    <resultMap id="CheckMap" type="com.tbxx.wpct.entity.PayInfo">
+    <resultMap id="CheckMap" type="com.tbxx.wpct.entity.PayInfo2">
         <id property="payinfoId" column="payinfo_id"/>
         <result property="villageName" column="village_name"/>
         <result property="buildNo" column="build_no"/>
@@ -48,7 +48,7 @@
         </collection>
     </resultMap>
 
-    <select id="checksList" resultMap="CheckMap">
+    <select id="checksList" resultType="com.tbxx.wpct.entity.PayInfo2">
         SELECT  *  FROM  tb_payinfo p,tb_consumption c
             WHERE p.payinfo_id = c.build_id AND
             p.pay_begin_time >DATE_SUB(CURDATE(), INTERVAL #{month} MONTH)

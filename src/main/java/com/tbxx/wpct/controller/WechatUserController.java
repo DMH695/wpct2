@@ -57,9 +57,4 @@ public class WechatUserController {
     public SR getInfoToBackend(){
         return wechatUserService.getInfoToBackend();
     }
-
-
-
-
-
 }
