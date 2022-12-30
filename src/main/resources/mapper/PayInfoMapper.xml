@@ -50,7 +50,7 @@
         </collection>
     </resultMap>
     <!--缴费多条件查询-->
-    <select id="selectCondition" resultMap="PayInfoMap">
+    <select id="selectCondition" resultType="com.tbxx.wpct.entity.PayInfo2" >
         select *
         from tb_payinfo p left join tb_consumption c on p.payinfo_id = c.build_id
         <where>

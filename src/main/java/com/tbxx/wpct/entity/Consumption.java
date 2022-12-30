@@ -135,5 +135,8 @@ public class Consumption implements Serializable {
      */
     private Integer otherFee;
 
+    private Integer rent;
+
+
 
 }

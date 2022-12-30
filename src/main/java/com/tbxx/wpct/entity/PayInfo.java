@@ -140,4 +140,7 @@ public class PayInfo implements Serializable {
      */
     @TableField(exist = false)
     private Consumption consumption;
+
+    private String houseType;
+
 }
