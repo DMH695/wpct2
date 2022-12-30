@@ -29,7 +29,7 @@ public class Consumption implements Serializable {
     /**
      * 租金
      */
-    private Integer rent;
+    private Integer areaFee;
 
     /**
      * 面积

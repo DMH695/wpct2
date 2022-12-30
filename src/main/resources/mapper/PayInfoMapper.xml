@@ -2,44 +2,63 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tbxx.wpct.mapper.PayInfoMapper">
     <resultMap id="PayInfoMap" type="com.tbxx.wpct.entity.PayInfo" >
-        <id column="payinfo_id" property="payinfoId" jdbcType="VARCHAR" />
-        <result  property="villageName" column="village_name" jdbcType="VARCHAR" />
-        <result  property="buildNo" column="build_no" />
-        <result  property="roomNo" column="room_no" />
-        <result  property="name" column="name" />
-        <result  property="pid" column="pid" />
-        <result  property="number" column="number" />
-        <result  property="car" column="car" />
-        <result  property="resident" column="resident" />
-        <result  property="conditionNumber" column="condition_number" />
-        <result  property="personNumber" column="person_number" />
-        <result  property="payStatus" column="pay_status" />
-        <result  property="houseType" column="house_type" />
-        <result  property="payBeginTime" column="pay_begin_time"/>
-        <result  property="payEndTime" column="pay_end_time" />
-        <result  property="updateTime" column="update_time" />
-        <result  property="remarks" column="remarks" />
-        <result  property="updateUser" column="update_user" />
-        <result  property="OrderNo" column="order_no" />
-        <result  property="relation" column="relation" />
-        <result  property="parking1" column="parking1" />
-        <result  property="parking2" column="parking2" />
+        <id property="payinfoId" column="payinfo_id"/>
+        <result property="villageName" column="village_name"/>
+        <result property="buildNo" column="build_no"/>
+        <result property="roomNo" column="room_no"/>
+        <result property="name" column="name"/>
+        <result property="pid" column="pid"/>
+        <result property="number" column="number"/>
+        <result property="car" column="car"/>
+        <result property="resident" column="resident"/>
+        <result property="conditionNumber" column="condition_number"/>
+        <result property="personNumber" column="person_number"/>
+        <result property="payStatus" column="pay_status"/>
+        <result property="guaranteeType" column="guarantee_type"/>
+        <result property="payBeginTime" column="pay_begin_time"/>
+        <result property="payEndTime" column="pay_end_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remarks" column="remarks"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="OrderNo" column="order_no"/>
+        <result property="relation" column="relation"/>
+        <result property="carNumber" column="car_number"/>
+        <collection property="consumption" ofType="com.tbxx.wpct.entity.Consumption">
+            <result column="build_id" property="buildId"/>
+            <result column="area_fee" property="areaFee"/>
+            <result column="area" property="area"/>
+            <result column="limit_area" property="limitArea"/>
+            <result column="over_area" property="overArea"/>
+            <result column="overarea_fee" property="overareaFee"/>
+            <result column="property" property="property"/>
+            <result column="property_fee" property="propertyFee"/>
+            <result column="deposit" property="deposit"/>
+            <result column="water_fee" property="waterFee"/>
+            <result column="electricity" property="electricity"/>
+            <result column="gas_fee" property="gasFee"/>
+            <result column="car_fee" property="carFee"/>
+            <result column="a_fee" property="aFee"/>
+            <result column="b_fee" property="bFee"/>
+            <result column="c_fee" property="cFee"/>
+            <result column="d_fee" property="dFee"/>
+            <result column="discount" property="discount"/>
+            <result column="lift_fee" property="liftFee"/>
+            <result column="gwater_fee" property="gwaterFee"/>
+            <result column="electricity_fee" property="electricityFee"/>
+            <result column="month_cost" property="monthCost"/>
+            <result column="other_fee" property="otherFee"/>
+        </collection>
     </resultMap>
-    <sql id="Base_Column_List" >
-        payinfo_id,village_name,build_no,room_no,name,pid,number,car,resident,condition_number,
-            person_number,pay_status,pay_begin_time,pay_end_time,update_time,
-            remarks,update_user,order_no,relation
-    </sql>
     <!--缴费多条件查询-->
-    <select id="selectCondition"  resultType="com.tbxx.wpct.entity.PayInfo2">
-        select <!--<include refid="Base_Column_List"></include>--> *
-        from tb_payinfo
+    <select id="selectCondition" resultMap="PayInfoMap">
+        select *
+        from tb_payinfo p left join tb_consumption c on p.payinfo_id = c.build_id
         <where>
             <if test="villageName != null and villageName != ''">
-                and village_name=#{villageName}
+                and village_name =#{villageName}
             </if>
             <if test="buildNo != null and buildNo != ''">
-                and build_no=#{buildNo}
+                and build_no =#{buildNo}
             </if>
             <if test="name != null and name != ''">
                 and name =#{name}
