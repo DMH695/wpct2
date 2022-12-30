@@ -52,7 +52,7 @@
     <!--缴费多条件查询-->
     <select id="selectCondition" resultMap="PayInfoMap">
         select *
-        from tb_payinfo
+        from tb_payinfo p left join tb_consumption c on p.payinfo_id = c.build_id
         <where>
             <if test="villageName != null and villageName != ''">
                 and village_name =#{villageName}
