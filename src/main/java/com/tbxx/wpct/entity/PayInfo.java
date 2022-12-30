@@ -23,6 +23,8 @@ import java.util.Date;
 
 @Data
 @TableName("tb_payinfo")
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -91,7 +93,7 @@ public class PayInfo implements Serializable {
     /**
      * 房屋类型
      */
-    private String houseType;
+    private String guaranteeType;
 
     /**
      * 缴费开始时间
@@ -151,4 +153,7 @@ public class PayInfo implements Serializable {
      */
     @TableField(exist = false)
     private Consumption consumption;
+
+    private String houseType;
+
 }
