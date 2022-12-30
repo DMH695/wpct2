@@ -27,7 +27,7 @@ public class PayInfoController {
     @ApiOperation("信息列表")
     @GetMapping("/list")
     //缴费多条件查询
-    public Result payInfoList(PayInfoVo vo) {
-        return Result.ok(payInfoService.splitpage(vo));
+    public Result payInfoList(@RequestParam int pageNum,@RequestParam int pageSize,PayInfoVo vo) {
+        return Result.ok(payInfoService.splitpage(pageNum,pageSize,vo));
     }
 }

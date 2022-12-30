@@ -19,6 +19,6 @@ import java.util.List;
 
 public interface PayInfoService extends IService<PayInfo> {
     @Transactional
-    PageResult splitpage(PayInfoVo vo);
+    PageResult splitpage(int pageNum, int pageSize,PayInfoVo vo);
 
 }
