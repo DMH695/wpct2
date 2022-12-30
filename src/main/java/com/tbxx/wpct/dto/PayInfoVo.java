@@ -14,6 +14,8 @@ public class PayInfoVo {
     String buildNo;
     String name;
     String payStatus;
+    Integer pageSize;
+    Integer pageNum;
     LocalDateTime payBeginTime;
     LocalDateTime payEndTime;
 

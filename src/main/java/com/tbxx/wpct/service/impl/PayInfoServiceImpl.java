@@ -1,5 +1,6 @@
 package com.tbxx.wpct.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -34,17 +35,26 @@ public class PayInfoServiceImpl extends ServiceImpl<PayInfoMapper, PayInfo> impl
     public static Page page;
 
     @Override
-    public PageResult splitpage(int pageNum, int pageSize, PayInfoVo vo) {
-        PageRequest pageRequest = new PageRequest(pageNum, pageSize);
+    public PageResult splitpage(PayInfoVo vo) {
+        PageRequest pageRequest = new PageRequest(vo.getPageNum(), vo.getPageSize());
         return PageUtil.getPageResult(getPageInfo(pageRequest,vo),page);
     }
 
-        private PageInfo<?> getPageInfo(PageRequest pageRequest, PayInfoVo vo) {
+    private PageInfo<?> getPageInfo(PageRequest pageRequest, PayInfoVo vo) {
         int pageNum = pageRequest.getPageNum();
         int pageSize = pageRequest.getPageSize();
         //设置分页数据
         page = PageHelper.startPage(pageNum,pageSize);
-        List<PayInfo> res = payInfoMapper.selectCondition(vo);
+        if (vo == null){
+            return new PageInfo<>(query().list());
+        }
+        List<PayInfo> res = query()
+                .like(vo.getVillageName() != null && !vo.getVillageName().equals(""),"village_name",vo.getVillageName())
+                .eq(vo.getBuildNo() != null && !vo.getBuildNo().equals(""),"build_no",vo.getBuildNo())
+                .like(vo.getName()!=null && !vo.getName().equals(""),"name",vo.getName())
+                .eq(vo.getPayStatus()!=null && !vo.getPayStatus().equals(""),"pay_status",vo.getPayStatus())
+                .ge(vo.getPayBeginTime()!=null,"pay_begin_time",vo.getPayBeginTime())
+                .le(vo.getPayBeginTime()!=null ,"pay_end_time",vo.getPayBeginTime()).list();
         return new PageInfo<>(res);
     }
 }

@@ -4,20 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81e9da3f-8dd7-42c9-b16f-150d9be9c6ca" name="Default Changelist" comment="Default Changelist">
+    <list default="true" id="81e9da3f-8dd7-42c9-b16f-150d9be9c6ca" name="Default Changelist" comment="fixed: 添加其他费用和车牌号字段">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a549c184-0598-4165-915c-927df75cec95.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_12.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_ehcache_ehcache_3_8_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ehcache_ehcache_3_8_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/PayInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/controller/PayInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/mapper/PayInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/mapper/PayInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/dto/PayInfoVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/dto/PayInfoVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/entity/Consumption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/entity/Consumption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/entity/PayInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/entity/PayInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/service/PayInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/service/PayInfoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/service/impl/PayInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tbxx/wpct/service/impl/PayInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/CheckMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/CheckMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/PayInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/PayInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/backend-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/backend-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/backend-1.0-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/backend-1.0-SNAPSHOT.jar.original" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/BuildInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/BuildInfoController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/CheckController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/CheckController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/DepositController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/DepositController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/ExamineController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/ExamineController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/PooledFeeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/PooledFeeController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/SysUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/SysUserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/WeChatPayController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/WeChatPayController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/WechatUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/WechatUserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/controller/wx/WXServletController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/entity/BuildInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/entity/BuildInfo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/entity/Consumption.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/entity/Consumption.class" afterDir="false" />
@@ -40,7 +56,10 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/service/impl/SysUserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/service/impl/SysUserServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/service/impl/WechatUserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/service/impl/WechatUserServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/tbxx/wpct/util/wx/WXCheckUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/CheckMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/CheckMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/WechatUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/WechatUserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,27 +79,26 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2IubCdHMFJfcm8CQKotqn5NWbzV" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/ssm/wpct2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "spring.configuration.checksum": "b43fdd98b1fd705ae4c3a10cf25aad8a"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\武平城投新\wpct_v2\backend" />
@@ -151,6 +169,8 @@
       <workItem from="1671852438318" duration="1601000" />
       <workItem from="1672193455403" duration="1007000" />
       <workItem from="1672214267936" duration="9043000" />
+      <workItem from="1672317929669" duration="1300000" />
+      <workItem from="1672375155561" duration="5409000" />
     </task>
     <task id="LOCAL-00001" summary="Default Changelist">
       <created>1672214440974</created>

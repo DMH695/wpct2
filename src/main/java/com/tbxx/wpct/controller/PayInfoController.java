@@ -5,6 +5,7 @@ import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.entity.PayInfo;
 import com.tbxx.wpct.service.PayInfoService;
+import com.tbxx.wpct.service.impl.PayInfoServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -22,12 +23,11 @@ import java.util.List;
 @RequestMapping("/payInfo")
 public class PayInfoController {
     @Autowired
-    PayInfoService payInfoService;
-    @RequiresPermissions("payInfo:list")
+    PayInfoServiceImpl payInfoService;
     @ApiOperation("信息列表")
     @GetMapping("/list")
     //缴费多条件查询
-    public Result payInfoList(@RequestParam int pageNum, @RequestParam int pageSize, @RequestParam(required = false) PayInfoVo vo) {
-        return Result.ok(payInfoService.splitpage(pageNum,pageSize,vo));
+    public Result payInfoList(PayInfoVo vo) {
+        return Result.ok(payInfoService.splitpage(vo));
     }
 }

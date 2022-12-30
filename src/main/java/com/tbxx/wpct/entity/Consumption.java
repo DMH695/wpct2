@@ -27,7 +27,7 @@ public class Consumption implements Serializable {
     private String buildId;
 
     /**
-     * 租金
+     * 面积核准单价
      */
     private Integer areaFee;
 
@@ -134,6 +134,11 @@ public class Consumption implements Serializable {
      * 其它费用
      */
     private Integer otherFee;
+
+    /**
+     * 租金
+     */
+    private Integer rent;
 
 
 }

@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -22,14 +24,17 @@ import java.util.Date;
 @Data
 @TableName("tb_payinfo")
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PayInfo implements Serializable {
     /**
      * 缴费id
      */
     private String payinfoId;
 
+
     /**
-     * 小区名称
+     * 小区
      */
     private String villageName;
 
@@ -62,11 +67,6 @@ public class PayInfo implements Serializable {
      * 车类
      */
     private String car;
-
-    /**
-     * 车牌号
-     */
-    private String carNumber;
 
     /**
      * 户口
@@ -111,6 +111,7 @@ public class PayInfo implements Serializable {
     /**
      * 备注
      */
+    @TableField("remarks")
     private String remarks;
 
     /**
@@ -127,6 +128,16 @@ public class PayInfo implements Serializable {
      * 与房屋的关系
      */
     private String relation;
+
+    /**
+     * 车牌号
+     */
+    private String carNumber;
+
+    /**
+     * 保障类型
+     */
+    private String guaranteeType;
 
 
 

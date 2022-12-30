@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="wpct2@47.98.120.130" uuid="a549c184-0598-4165-915c-927df75cec95">
+    <data-source source="LOCAL" name="wpct2@124.71.9.121" uuid="81157f22-7c47-4460-9f6b-d6edccb75082">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://47.98.120.130:3306/wpct2</jdbc-url>
+      <jdbc-url>jdbc:mysql://124.71.9.121:3306/wpct2</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
