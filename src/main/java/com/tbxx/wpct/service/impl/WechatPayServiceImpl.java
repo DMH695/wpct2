@@ -184,7 +184,7 @@ public class WechatPayServiceImpl implements WechatPayService {
         paramsMap.put("mchid", wxPayConfig.getMchId());
         paramsMap.put("description", orderInfo.getTitle());
         paramsMap.put("out_trade_no", orderInfo.getOrderNo());   //test
-        paramsMap.put("notify_url", "https://4s3471264h.zicp.fun/weixin/jsapi/notify");  //test
+        paramsMap.put("notify_url", "https://wpctjt.com/weixin/jsapi/notify");  //test
 
         Map amountMap = new HashMap();
         amountMap.put("total", orderInfo.getTotalFee());
@@ -526,7 +526,7 @@ public class WechatPayServiceImpl implements WechatPayService {
         paramsMap.put("out_trade_no", orderNo);//订单编号
         paramsMap.put("out_refund_no", refundsInfo.getRefundNo());//退款单编号
         paramsMap.put("reason", reason);//退款原因
-        paramsMap.put("notify_url", "https://4s3471264h.zicp.fun/wenxin/refunds/notify");//TODO 退款通知地址  改回公众号的
+        paramsMap.put("notify_url", "https://wpctjt.com/wenxin/refunds/notify");//TODO 退款通知地址  改回公众号的
 
         Map amountMap = new HashMap();
         amountMap.put("refund", refundsInfo.getRefund());//退款金额
