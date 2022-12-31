@@ -171,7 +171,7 @@ public class WechatPayServiceImpl implements WechatPayService {
     @Override
     public String jsapiPay(String openid, String orderId) throws Exception {
         log.warn("生成订单");
-        OrderInfo orderInfo = orderInfoMapper.selectById(orderId);
+        OrderInfo orderInfo = orderInfoMapper.getById(orderId);
 
         log.warn("调用统一下单api");
         HttpPost httpPost = new HttpPost(wxPayConfig.getDomain().concat("/v3/pay/transactions/jsapi"));
