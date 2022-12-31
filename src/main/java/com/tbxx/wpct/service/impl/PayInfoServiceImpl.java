@@ -59,9 +59,11 @@ public class PayInfoServiceImpl extends ServiceImpl<PayInfoMapper, PayInfo> impl
                     .eq(vo.getBuildNo() != null && !vo.getBuildNo().equals(""), "build_no", vo.getBuildNo())
                     .like(vo.getName() != null && !vo.getName().equals(""), "name", vo.getName())
                     .eq(vo.getPayStatus() != null && !vo.getPayStatus().equals(""), "pay_status", vo.getPayStatus())
-                    .ge(vo.getPayBeginTime() != null, "pay_begin_time", vo.getPayBeginTime())
-                    .le(vo.getPayBeginTime() != null, "pay_end_time", vo.getPayBeginTime()).list();
-        }
+                    .ge(vo.getPayBeginTime() != null && vo.getPayEndTime() == null, "pay_begin_time", vo.getPayBeginTime())
+                    .le(vo.getPayEndTime() != null&&vo.getPayBeginTime() == null, "pay_end_time", vo.getPayEndTime())
+                     .between(vo.getPayBeginTime() != null && vo.getPayEndTime() != null,"pay_begin_time",vo.getPayBeginTime(),vo.getPayEndTime())
+                     .between(vo.getPayBeginTime() != null && vo.getPayEndTime() != null,"pay_end_time",vo.getPayBeginTime(),vo.getPayEndTime()).list();
+             }
         if(res != null){
             for(int i = 0;i<res.size();i++){
                 PayInfo payInfo = res.get(i);
