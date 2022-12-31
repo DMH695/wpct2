@@ -3,6 +3,7 @@ package com.tbxx.wpct.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tbxx.wpct.entity.Consumption;
 import com.tbxx.wpct.entity.PooledFee;
+import org.mapstruct.Mapper;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  * @Description TODO
  * @DATE 2022/10/8 21:12
  */
-
+@Mapper
 public interface ConsumptionMapper extends BaseMapper<Consumption> {
 
     @Transactional
