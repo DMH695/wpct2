@@ -20,5 +20,5 @@ import java.util.List;
 @Mapper
 public interface PayInfoMapper extends BaseMapper<PayInfo> {
     //缴费多条件查询
-    List<PayInfo2> selectCondition(PayInfoVo vo);
+    List<PayInfo> selectCondition(PayInfoVo vo);
 }

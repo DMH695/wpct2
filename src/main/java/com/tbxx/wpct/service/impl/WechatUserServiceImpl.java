@@ -99,7 +99,6 @@ public class WechatUserServiceImpl extends ServiceImpl<WechatUserMapper, WechatU
     @Override
     public SR getInfoToBackend() {
         List<WechatUser> wechatUsers = baseMapper.selectList(null);
-        wechatUsers.removeIf(oldList -> oldList.getPid() == null);
 
         for (WechatUser queryBuild : wechatUsers) {
             String openid = queryBuild.getOpenid();

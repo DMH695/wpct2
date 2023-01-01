@@ -3,61 +3,65 @@
 <mapper namespace="com.tbxx.wpct.mapper.PayInfoMapper">
     <resultMap id="PayInfoMap" type="com.tbxx.wpct.entity.PayInfo" >
         <id property="payinfoId" column="payinfo_id"/>
-        <result property="village_name" column="village_name"/>
-        <result property="buildNo" column="build_no"/>
-        <result property="roomNo" column="room_no"/>
-        <result property="name" column="name"/>
-        <result property="pid" column="pid"/>
-        <result property="number" column="number"/>
-        <result property="car" column="car"/>
-        <result property="resident" column="resident"/>
-        <result property="conditionNumber" column="condition_number"/>
-        <result property="personNumber" column="person_number"/>
-        <result property="payStatus" column="pay_status"/>
-        <result property="guaranteeType" column="guarantee_type"/>
-        <result property="payBeginTime" column="pay_begin_time"/>
-        <result property="payEndTime" column="pay_end_time"/>
-        <result property="updateTime" column="update_time"/>
-        <result property="remarks" column="remarks"/>
-        <result property="updateUser" column="update_user"/>
-        <result property="OrderNo" column="order_no"/>
-        <result property="relation" column="relation"/>
-        <result property="carNumber" column="car_number"/>
-        <collection property="consumption" ofType="com.tbxx.wpct.entity.Consumption">
-            <result column="build_id" property="buildId"/>
-            <result column="area_fee" property="areaFee"/>
-            <result column="area" property="area"/>
-            <result column="limit_area" property="limitArea"/>
-            <result column="over_area" property="overArea"/>
-            <result column="overarea_fee" property="overareaFee"/>
-            <result column="property" property="property"/>
-            <result column="property_fee" property="propertyFee"/>
-            <result column="deposit" property="deposit"/>
-            <result column="water_fee" property="waterFee"/>
-            <result column="electricity" property="electricity"/>
-            <result column="gas_fee" property="gasFee"/>
-            <result column="car_fee" property="carFee"/>
-            <result column="a_fee" property="aFee"/>
-            <result column="b_fee" property="bFee"/>
-            <result column="c_fee" property="cFee"/>
-            <result column="d_fee" property="dFee"/>
-            <result column="discount" property="discount"/>
-            <result column="lift_fee" property="liftFee"/>
-            <result column="gwater_fee" property="gwaterFee"/>
-            <result column="electricity_fee" property="electricityFee"/>
-            <result column="month_cost" property="monthCost"/>
-            <result column="other_fee" property="otherFee"/>
-            <result column="rent" property="rent"/>
-        </collection>
+        <result property="villageName" column="village_name"></result>
+        <result property="buildNo" column="build_no"></result>
+        <result property="roomNo" column="room_no"></result>
+        <result property="name" column="name"></result>
+        <result property="pid" column="pid"></result>
+        <result property="number" column="number"></result>
+        <result property="car" column="car"></result>
+        <result property="resident" column="resident"></result>
+        <result property="conditionNumber" column="condition_number"></result>
+        <result property="personNumber" column="person_number"></result>
+        <result property="payStatus" column="pay_status"></result>
+        <result property="guaranteeType" column="guarantee_type"></result>
+        <result property="payBeginTime" column="pay_begin_time"></result>
+        <result property="payEndTime" column="pay_end_time"></result>
+        <result property="updateTime" column="update_time"></result>
+        <result property="remarks" column="remarks"></result>
+        <result property="updateUser" column="update_user"></result>
+        <result property="OrderNo" column="order_no"></result>
+        <result property="relation" column="relation"></result>
+        <result property="carNumber" column="car_number"></result>
+        <result property="houseType" column="house_type"></result>
+        <association property="consumption" column="tb_consumption">
+            <id property="buildId" column="build_id"></id>
+            <result property="areaFee" column="area_fee"></result>
+            <result property="area" column="area"></result>
+            <result property="limitArea" column="limit_area"></result>
+            <result property="overArea" column="over_area"></result>
+            <result property="overareaFee" column="overarea_fee"></result>
+            <result property="property" column="property"></result>
+            <result property="propertyFee" column="property_fee"></result>
+            <result property="deposit" column="deposit"></result>
+            <result property="waterFee" column="water_fee"></result>
+            <result property="electricity" column="electricity"></result>
+            <result property="gasFee" column="gas_fee"></result>
+            <result property="carFee" column="car_fee"></result>
+            <result property="aFee" column="a_fee"></result>
+            <result property="bFee" column="b_fee"></result>
+            <result property="cFee" column="c_fee"></result>
+            <result property="dFee" column="d_fee"></result>
+            <result property="discount" column="discount"></result>
+            <result property="liftFee" column="lift_fee"></result>
+            <result property="gwaterFee" column="gwater_fee"></result>
+            <result property="electricityFee" column="electricity_fee"></result>
+            <result property="monthCost" column="month_cost"></result>
+            <result property="otherFee" column="other_fee"></result>
+            <result property="rent" column="rent"></result>
+        </association>
     </resultMap>
     <!--缴费多条件查询-->
     <select id="selectCondition" resultMap="PayInfoMap">
         select
-               payinfo_id, village_name, build_no, room_no, `name`, pid
-             , `number`, car, resident, condition_number, person_number
-             , pay_status, guarantee_type, pay_begin_time, pay_end_time
-             , update_time, remarks, update_user, order_no, relation
-        from tb_payinfo
+            payinfo_id, village_name, build_no, room_no, `name`, pid
+            , `number`, car, resident, condition_number, person_number
+            , pay_status, guarantee_type, pay_begin_time, pay_end_time
+            , update_time, remarks, update_user, order_no, relation,build_id
+            ,area_fee,area,limit_area,over_area,overarea_fee,property,property_fee
+            ,deposit,water_fee,electricity,gas_fee,car_fee,a_fee,b_fee,c_fee,d_fee
+            ,discount,lift_fee,gwater_fee,electricity_fee,month_cost,other_fee
+        from tb_payinfo p left join tb_consumption c on p.payinfo_id = c.build_id
         <where>
             <if test="villageName != null and villageName != ''">
                 and village_name =#{villageName}
@@ -81,5 +85,7 @@
                 and pay_begin_time &gt;= #{payBeginTime} and pay_end_time &lt;= #{payEndTime}
             </if>
         </where>
+
+
     </select>
 </mapper>
