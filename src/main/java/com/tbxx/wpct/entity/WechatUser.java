@@ -59,5 +59,10 @@ public class WechatUser implements Serializable {
     @TableField(exist = false)
     private List<BuildInfo> buildInfoList;
 
+    /**
+     * 用户微信注册房屋信息验证
+     */
+    private OrderInfo orderInfo;
+
 
 }

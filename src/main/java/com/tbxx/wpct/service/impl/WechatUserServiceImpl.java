@@ -10,6 +10,7 @@ import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.dto.SR;
 import com.tbxx.wpct.entity.BuildInfo;
+import com.tbxx.wpct.entity.PayInfo;
 import com.tbxx.wpct.entity.WechatUser;
 import com.tbxx.wpct.mapper.BuildInfoMapper;
 import com.tbxx.wpct.mapper.WechatUserMapper;
@@ -128,5 +129,10 @@ public class WechatUserServiceImpl extends ServiceImpl<WechatUserMapper, WechatU
     @Override
     public WechatUser getByOpenid(String openid) {
         return wechatUserMapper.getByOpenid(openid);
+    }
+    @Override
+    public Result registerVerify(PayInfo payInfo) {
+        WechatUser nameNumberOrderNo = wechatUserMapper.getNameNumberOrderNo(payInfo);
+        return Result.ok(nameNumberOrderNo);
     }
 }

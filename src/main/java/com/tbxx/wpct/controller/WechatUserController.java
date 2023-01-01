@@ -5,6 +5,7 @@ import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.dto.SR;
 import com.tbxx.wpct.dto.WechatUserDTO;
 import com.tbxx.wpct.entity.BuildInfo;
+import com.tbxx.wpct.entity.PayInfo;
 import com.tbxx.wpct.entity.WechatUser;
 import com.tbxx.wpct.service.SendMsgService;
 import com.tbxx.wpct.service.impl.BuildInfoServiceImpl;
@@ -68,4 +69,11 @@ public class WechatUserController {
     public void sendHasten( WechatUserDTO wechatUserDTO)throws InterruptedException{
         sendMsgService.sendHasten(wechatUserDTO);
     }
+
+    @ApiOperation("用户微信注册房屋信息验证")
+    @PostMapping("/registerverify")
+    public Result registerVerify(@RequestBody PayInfo payInfo){
+        return wechatUserService.registerVerify(payInfo);
+    }
+
 }
