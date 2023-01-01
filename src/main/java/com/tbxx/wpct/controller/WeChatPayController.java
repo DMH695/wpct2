@@ -231,7 +231,7 @@ public class WeChatPayController {
         String ticket = (String) map2.get("ticket");
         String nonceStr = RandomUtil.randomString(32);// 随机字符串
         String timeStamp = String.valueOf(System.currentTimeMillis() / 1000);// 时间戳
-        String url = "https://wpctjt.com";   //test
+        String url = "http://wpct.x597.com";   //test
         //String url = "http://fjwpct.com";
 
         String jsapi_ticket = "jsapi_ticket=" + ticket + "&noncestr=" + nonceStr + "&timestamp=" + timeStamp + "&url=" + url;
