@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.dto.SR;
 import com.tbxx.wpct.entity.WechatUser;
+import com.tbxx.wpct.util.page.PageResult;
 import springfox.documentation.builders.BuilderDefaults;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface WechatUserService extends IService<WechatUser> {
 
     Result getInfo(String openid);
 
-    SR getInfoToBackend();
+    PageResult splitpage(int pageNum, int pageSize);
 
     WechatUser getByOpenid(String openid);
 }
