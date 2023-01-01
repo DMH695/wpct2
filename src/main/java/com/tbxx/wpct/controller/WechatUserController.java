@@ -76,4 +76,10 @@ public class WechatUserController {
         return wechatUserService.registerVerify(payInfo);
     }
 
+    @ApiOperation("所有的房屋信息")
+    @PostMapping("/buildList")
+    public Result buildList(String openId){
+        return wechatUserService.buildList(openId);
+    }
+
 }

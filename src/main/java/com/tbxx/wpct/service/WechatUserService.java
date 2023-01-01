@@ -26,6 +26,8 @@ public interface WechatUserService extends IService<WechatUser> {
     PageResult splitpage(int pageNum, int pageSize);
 
     WechatUser getByOpenid(String openid);
+
     Result registerVerify(PayInfo payInfo);
 
+    Result buildList(String openId);
 }

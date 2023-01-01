@@ -12,4 +12,8 @@
         </foreach>
     </insert>
 
+    <!--根据openid查出所有房屋信息-->
+    <select id="allBuildInfo" parameterType="String" resultType="com.tbxx.wpct.entity.BuildInfo">
+        select * from tb_build_info where openid=#{openid}
+    </select>
 </mapper>

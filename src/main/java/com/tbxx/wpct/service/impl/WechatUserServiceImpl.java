@@ -135,4 +135,10 @@ public class WechatUserServiceImpl extends ServiceImpl<WechatUserMapper, WechatU
         WechatUser nameNumberOrderNo = wechatUserMapper.getNameNumberOrderNo(payInfo);
         return Result.ok(nameNumberOrderNo);
     }
+
+    @Override
+    public Result buildList(String openId) {
+        BuildInfo buildInfo = buildInfoMapper.allBuildInfo(openId);
+        return Result.ok(buildInfo);
+    }
 }
