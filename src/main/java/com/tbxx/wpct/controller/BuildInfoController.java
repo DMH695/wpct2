@@ -1,5 +1,6 @@
 package com.tbxx.wpct.controller;
 
+import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.entity.BuildInfo;
 import com.tbxx.wpct.service.impl.BuildInfoServiceImpl;
@@ -78,9 +79,8 @@ public class BuildInfoController {
 
     @ApiOperation("按条件筛选导出excel")
     @GetMapping("/export")
-    public void export2Excel(String villageName, String buildNo, String payStatus
-            , String name, String beganDate,String endDate,HttpServletResponse response){
-        buildInfoService.export2Excel(villageName, buildNo, payStatus, name, beganDate, endDate, response);
+    public void export2Excel(PayInfoVo vo, HttpServletResponse response){
+        buildInfoService.export2Excel(vo, response);
     }
 
 
