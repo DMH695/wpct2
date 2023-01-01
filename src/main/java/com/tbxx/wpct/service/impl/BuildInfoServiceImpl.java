@@ -4,6 +4,7 @@ import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.dto.model.HouseInfoImport;
 import com.tbxx.wpct.entity.BuildInfo;
@@ -38,6 +39,10 @@ public class BuildInfoServiceImpl extends ServiceImpl<BuildInfoMapper, BuildInfo
     @Autowired
     @Lazy
     private CheckServiceImpl checkService;
+
+    @Autowired
+    @Lazy
+    private ConsumptionServiceImpl consumptionService;
 
 
     /**
@@ -81,14 +86,19 @@ public class BuildInfoServiceImpl extends ServiceImpl<BuildInfoMapper, BuildInfo
     // TODO 日期筛选
     @SneakyThrows
     @Override
-    public void export2Excel(String villageName, String buildNo, String payStatus, String name, String beganDate, String endDate, HttpServletResponse response) {
-        List<PayInfo> payInfos = checkService.query()
-                .like("village_name", villageName)
-                .like("build_no", buildNo)
-                .eq("pay_status", payStatus).list();
+    public void export2Excel(PayInfoVo vo, HttpServletResponse response) {
+        String villageName = vo.getVillageName();
+        String buildNo = vo.getBuildNo();
+        String payStatus = vo.getPayStatus();
+        String name = vo.getName();
+            List<PayInfo> payInfos = checkService.query()
+                .like(villageName!=null && !villageName.equals(""),"village_name", villageName)
+                .like(buildNo!=null && !buildNo.equals(""),"build_no", buildNo)
+                .eq(payStatus!= null && !payStatus.equals(""),"pay_status", payStatus).list();
         response.setHeader("Content-Disposition", "attachment;filename=template.xlsx");
         List<HouseInfoImport> houseInfoImports = new ArrayList<>();
         for (PayInfo payInfo : payInfos) {
+            payInfo.setConsumption(consumptionService.query().eq("build_id",payInfo.getPayinfoId()).one());
             houseInfoImports.add(payInfo2HouseInfoImport(payInfo));
         }
         EasyExcel.write(response.getOutputStream())
@@ -125,6 +135,7 @@ public class BuildInfoServiceImpl extends ServiceImpl<BuildInfoMapper, BuildInfo
 
     HouseInfoImport payInfo2HouseInfoImport(PayInfo payInfo){
         Consumption consumption = payInfo.getConsumption();
+
         return HouseInfoImport.builder()
                 .villageName(payInfo.getVillageName()).buildNo(payInfo.getBuildNo())
                 .roomNo(payInfo.getRoomNo()).name(payInfo.getName()).number(payInfo.getNumber())

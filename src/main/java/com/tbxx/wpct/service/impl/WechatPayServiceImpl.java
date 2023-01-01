@@ -1,7 +1,10 @@
 package com.tbxx.wpct.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
+import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.entity.OrderInfo;
 import com.tbxx.wpct.entity.RefundInfo;
 import com.tbxx.wpct.enums.OrderStatus;
@@ -177,14 +180,15 @@ public class WechatPayServiceImpl implements WechatPayService {
         HttpPost httpPost = new HttpPost(wxPayConfig.getDomain().concat("/v3/pay/transactions/jsapi"));
 
         //请求body参数
-        Gson gson = new Gson();
+        //设置gson不转码
+        Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         Map<String, Object> paramsMap = new HashMap<>();
 
         paramsMap.put("appid", wxPayConfig.getAppid());
         paramsMap.put("mchid", wxPayConfig.getMchId());
         paramsMap.put("description", orderInfo.getTitle());
         paramsMap.put("out_trade_no", orderInfo.getOrderNo());   //test
-        paramsMap.put("notify_url", "https://wpctjt.com/weixin/jsapi/notify");  //test
+        paramsMap.put("notify_url", "http://wpct.x597.com/weixin/jsapi/notify");  //test
 
         Map amountMap = new HashMap();
         amountMap.put("total", orderInfo.getTotalFee());
@@ -218,7 +222,12 @@ public class WechatPayServiceImpl implements WechatPayService {
             } else {
                 log.info("JSAPI下单失败,响应码 = " + statusCode + ",返回结果 = " +
                         bodyAsString);
-                throw new IOException("request failed");
+                //throw new IOException("request failed");
+                //给前端返回信息
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("statusCode",statusCode);
+                jsonObject.put("bodyAsString",bodyAsString);
+                return Result.ok(jsonObject).toString();
             }
 
             String nonceStr = RandomUtil.randomString(32);// 随机字符串
@@ -454,6 +463,7 @@ public class WechatPayServiceImpl implements WechatPayService {
             int statusCode = response.getStatusLine().getStatusCode();//响应状态码
             if (statusCode == 200) { //处理成功
                 log.info("成功, 返回结果 = " + bodyAsString);
+                processOrder(bodyAsString);
             } else if (statusCode == 204) { //处理成功，无返回Body
                 log.info("成功");
             } else {
@@ -526,7 +536,7 @@ public class WechatPayServiceImpl implements WechatPayService {
         paramsMap.put("out_trade_no", orderNo);//订单编号
         paramsMap.put("out_refund_no", refundsInfo.getRefundNo());//退款单编号
         paramsMap.put("reason", reason);//退款原因
-        paramsMap.put("notify_url", "https://wpctjt.com/wenxin/refunds/notify");//TODO 退款通知地址  改回公众号的
+        paramsMap.put("notify_url", "http://wpct.x597.com/wenxin/refunds/notify");//TODO 退款通知地址  改回公众号的
 
         Map amountMap = new HashMap();
         amountMap.put("refund", refundsInfo.getRefund());//退款金额

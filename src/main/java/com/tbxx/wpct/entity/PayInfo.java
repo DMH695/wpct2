@@ -134,9 +134,6 @@ public class PayInfo implements Serializable {
      */
     private String carNumber;
 
-    /**
-     * 保障类型
-     */
 
 
 

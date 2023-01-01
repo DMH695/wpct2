@@ -1,6 +1,7 @@
 package com.tbxx.wpct.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.entity.BuildInfo;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +30,5 @@ public interface BuildInfoService extends IService<BuildInfo> {
 
     Result importData(MultipartFile file);
 
-    void export2Excel(String villageName, String buildNo, String payStatus
-            , String name, String beganDate,String endDate,HttpServletResponse response);
+    void export2Excel(PayInfoVo vo, HttpServletResponse response);
 }
