@@ -132,8 +132,11 @@ public class WechatUserServiceImpl extends ServiceImpl<WechatUserMapper, WechatU
     }
     @Override
     public Result registerVerify(PayInfo payInfo) {
-        WechatUser nameNumberOrderNo = wechatUserMapper.getNameNumberOrderNo(payInfo);
-        return Result.ok(nameNumberOrderNo);
+        WechatUser wechatUser = wechatUserMapper.getNameNumberOrderNo(payInfo);
+        if (wechatUser == null){
+            return Result.fail("无对应数据");
+        }
+        return Result.ok(wechatUser);
     }
 
     @Override
