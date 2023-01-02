@@ -3,6 +3,7 @@ package com.tbxx.wpct.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.dto.SR;
+import com.tbxx.wpct.entity.PayInfo;
 import com.tbxx.wpct.entity.WechatUser;
 import com.tbxx.wpct.util.page.PageResult;
 import springfox.documentation.builders.BuilderDefaults;
@@ -25,4 +26,8 @@ public interface WechatUserService extends IService<WechatUser> {
     PageResult splitpage(int pageNum, int pageSize);
 
     WechatUser getByOpenid(String openid);
+
+    Result registerVerify(PayInfo payInfo);
+
+    Result buildList(String openId);
 }

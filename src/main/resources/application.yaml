@@ -5,9 +5,9 @@ spring:
   application:
     name: wpct
   datasource:
-    url: jdbc:mysql://124.71.9.121:3306/wpct2?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
-    username: wpct2
-    password: 123456
+    url: jdbc:mysql://localhost/wpct2?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: mysql
 
   redis:
     host: 124.71.9.121
