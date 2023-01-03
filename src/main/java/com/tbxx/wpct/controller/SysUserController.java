@@ -1,7 +1,9 @@
 package com.tbxx.wpct.controller;
 
 import com.tbxx.wpct.dto.Result;
+import com.tbxx.wpct.dto.WechatUserDTO;
 import com.tbxx.wpct.entity.SysUser;
+import com.tbxx.wpct.service.SendMsgService;
 import com.tbxx.wpct.service.impl.SysUserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -60,7 +62,5 @@ public class SysUserController {
     public Result UserList(@RequestParam int pageNum,@RequestParam int pageSize){
         return Result.ok(userService.UserList(pageNum,pageSize));
     }
-
-
 
 }

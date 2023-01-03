@@ -3,9 +3,13 @@ package com.tbxx.wpct.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.tbxx.wpct.dto.Result;
 import com.tbxx.wpct.dto.SR;
+import com.tbxx.wpct.dto.WechatUserDTO;
 import com.tbxx.wpct.entity.BuildInfo;
+import com.tbxx.wpct.entity.PayInfo;
 import com.tbxx.wpct.entity.WechatUser;
+import com.tbxx.wpct.service.SendMsgService;
 import com.tbxx.wpct.service.impl.BuildInfoServiceImpl;
+import com.tbxx.wpct.service.impl.SendMsgServiceImpl;
 import com.tbxx.wpct.service.impl.WechatPayServiceImpl;
 import com.tbxx.wpct.service.impl.WechatUserServiceImpl;
 import io.swagger.annotations.Api;
@@ -33,6 +37,8 @@ public class WechatUserController {
 
     @Autowired
     WechatUserServiceImpl wechatUserService;
+    @Autowired
+    SendMsgServiceImpl sendMsgService;
 
     @Lazy
     @Autowired
@@ -54,7 +60,26 @@ public class WechatUserController {
     //@RequiresPermissions("weixin:list")
     @ApiOperation("微信用户信息(后台)")
     @GetMapping("/binfo")
-    public SR getInfoToBackend(){
-        return wechatUserService.getInfoToBackend();
+    public Result getInfoToBackend(@RequestParam int pageNum, @RequestParam int pageSize){
+        return Result.ok(wechatUserService.splitpage(pageNum,pageSize));
     }
+
+    @ApiOperation("微信用户催缴")
+    @GetMapping("/sendHasten")
+    public void sendHasten( WechatUserDTO wechatUserDTO)throws InterruptedException{
+        sendMsgService.sendHasten(wechatUserDTO);
+    }
+
+    @ApiOperation("用户微信注册房屋信息验证")
+    @PostMapping("/registerverify")
+    public Result registerVerify(@RequestBody PayInfo payInfo){
+        return wechatUserService.registerVerify(payInfo);
+    }
+
+    @ApiOperation("所有的房屋信息")
+    @PostMapping("/buildList")
+    public Result buildList(String openId){
+        return wechatUserService.buildList(openId);
+    }
+
 }

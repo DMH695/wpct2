@@ -4,4 +4,21 @@
 
 <mapper namespace="com.tbxx.wpct.mapper.WechatUserMapper">
     <select id="getByOpenid" resultType="com.tbxx.wpct.entity.WechatUser">SELECT * FROM tb_wechat_user WHERE openid=#{openid}</select>
+
+    <resultMap id="com.tbxx.wpct.mapper.WechatUserMapper.WechatUserMap" type="com.tbxx.wpct.entity.WechatUser">
+        <id property="id" column="id"/>
+        <result property="openid" column="openid"/>
+        <result property="nickname" column="nickname"/>
+        <result property="name" column="name"/>
+        <result property="number" column="number"/>
+        <result property="pid" column="pid"/>
+        <association property="orderInfo" javaType="com.tbxx.wpct.entity.OrderInfo">
+            <id property="id" column="id"/>
+            <result property="orderNo" column="order_no"/>
+        </association>
+    </resultMap>
+    <select id="getNameNumberOrderNo" resultMap="com.tbxx.wpct.mapper.WechatUserMapper.WechatUserMap" parameterType="com.tbxx.wpct.entity.PayInfo">
+        SELECT pi.name,pi.number,pi.order_no FROM tb_payinfo pi
+        where pi.village_name=#{villageName} and pi.room_no=#{roomNo} and pi.build_no=#{buildNo}
+    </select>
 </mapper>
