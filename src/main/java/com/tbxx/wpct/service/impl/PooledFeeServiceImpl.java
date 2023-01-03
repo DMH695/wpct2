@@ -8,8 +8,11 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.tbxx.wpct.dto.Result;
+import com.tbxx.wpct.entity.Consumption;
+import com.tbxx.wpct.entity.PayInfo;
 import com.tbxx.wpct.entity.PooledFee;
 import com.tbxx.wpct.mapper.ConsumptionMapper;
+import com.tbxx.wpct.mapper.PayInfoMapper;
 import com.tbxx.wpct.mapper.PooledFeeMapper;
 import com.tbxx.wpct.service.PooledFeeService;
 import com.tbxx.wpct.util.UserList;
@@ -19,6 +22,7 @@ import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -44,6 +48,13 @@ public class PooledFeeServiceImpl extends ServiceImpl<PooledFeeMapper, PooledFee
     @Resource
     private PooledFeeMapper pooledFeeMapper;
 
+    @Autowired
+    @Lazy
+    private PayInfoServiceImpl payInfoService;
+
+    @Autowired
+    @Lazy
+    private ConsumptionServiceImpl consumptionService;
 
 
     /**
@@ -184,6 +195,19 @@ public class PooledFeeServiceImpl extends ServiceImpl<PooledFeeMapper, PooledFee
     public Result importPooled(MultipartFile file) {
         List<PooledFee> pooledFees = EasyExcel.read(file.getInputStream()).head(PooledFee.class).sheet().doReadSync();
         for (PooledFee pooledFee : pooledFees){
+            List<Consumption> consumptions = new ArrayList<>();
+            payInfoService.query().select("payinfo_id")
+                    .eq("village_name", pooledFee.getVillageName())
+                    .eq("build_no", pooledFee.getBuildName())
+                    .eq("room_no", pooledFee.getRoomName()).list()
+                    .forEach(payInfo -> consumptions.add(
+                            Consumption.builder()
+                                    .buildId(payInfo.getPayinfoId())
+                                    .liftFee(pooledFee.getLiftFee())
+                                    .gwaterFee(pooledFee.getWaterFee())
+                                    .electricityFee(pooledFee.getElectricityFee())
+                                    .build()));
+            consumptionService.updateBatchById(consumptions);
             pooledFeeMapper.insert(pooledFee);
         }
         return Result.ok();
