@@ -3,6 +3,7 @@ package com.tbxx.wpct.service.impl;
 import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tbxx.wpct.dto.PayInfoVo;
 import com.tbxx.wpct.dto.Result;
@@ -24,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @Author ZXX
@@ -86,19 +89,29 @@ public class BuildInfoServiceImpl extends ServiceImpl<BuildInfoMapper, BuildInfo
     // TODO 日期筛选
     @SneakyThrows
     @Override
+    @Transactional
     public void export2Excel(PayInfoVo vo, HttpServletResponse response) {
         String villageName = vo.getVillageName();
         String buildNo = vo.getBuildNo();
         String payStatus = vo.getPayStatus();
         String name = vo.getName();
-            List<PayInfo> payInfos = checkService.query()
+        List<PayInfo> payInfos = checkService.query()
                 .like(villageName!=null && !villageName.equals(""),"village_name", villageName)
                 .like(buildNo!=null && !buildNo.equals(""),"build_no", buildNo)
                 .eq(payStatus!= null && !payStatus.equals(""),"pay_status", payStatus).list();
         response.setHeader("Content-Disposition", "attachment;filename=template.xlsx");
         List<HouseInfoImport> houseInfoImports = new ArrayList<>();
+        List<String> checkIds = new ArrayList<>();
         for (PayInfo payInfo : payInfos) {
-            payInfo.setConsumption(consumptionService.query().eq("build_id",payInfo.getPayinfoId()).one());
+            checkIds.add(payInfo.getPayinfoId());
+        }
+        List<Consumption> consumptions = consumptionService.query().in("build_id", checkIds).list();
+        Map<String,Consumption> map = new ConcurrentHashMap<>();
+        for (Consumption consumption : consumptions) {
+            map.put(consumption.getBuildId(),consumption);
+        }
+        for (PayInfo payInfo : payInfos) {
+            payInfo.setConsumption(map.get(payInfo.getPayinfoId()));
             houseInfoImports.add(payInfo2HouseInfoImport(payInfo));
         }
         EasyExcel.write(response.getOutputStream())
@@ -134,7 +147,7 @@ public class BuildInfoServiceImpl extends ServiceImpl<BuildInfoMapper, BuildInfo
     }
 
     HouseInfoImport payInfo2HouseInfoImport(PayInfo payInfo){
-        Consumption consumption = payInfo.getConsumption();
+        Consumption consumption = payInfo.getConsumption() == null ? new Consumption() : payInfo.getConsumption();
 
         return HouseInfoImport.builder()
                 .villageName(payInfo.getVillageName()).buildNo(payInfo.getBuildNo())
